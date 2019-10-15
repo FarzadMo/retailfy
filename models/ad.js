@@ -1,6 +1,6 @@
-module.exports = function(sequelize, DataTypes) {
-  let Post = sequelize.define(
-    "Post",
+module.exports = function (sequelize, DataTypes) {
+  let Ad = sequelize.define(
+    "Ad",
     {
       title: {
         type: DataTypes.STRING,
@@ -67,13 +67,13 @@ module.exports = function(sequelize, DataTypes) {
     }
   );
 
-  Post.associate = function(models) {
-    Post.belongsTo(models.User, {
+  Ad.associate = function (models) {
+    Ad.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
     });
   };
 
-  return Post;
+  return Ad;
 };
