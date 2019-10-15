@@ -1,4 +1,5 @@
-require("dotenv").config();
+//require("dotenv").config();
+
 const express = require("express");
 const routes = require("./routes");
 const db = require("./models");
