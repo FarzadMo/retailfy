@@ -1,4 +1,5 @@
-require("dotenv").config();
+//require("dotenv").config();
+
 const express = require("express");
 const routes = require("./routes");
 const db = require("./models");
@@ -30,3 +31,5 @@ db.sequelize.sync(syncOptions).then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
+
+module.exports = app;
