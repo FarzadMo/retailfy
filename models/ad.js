@@ -47,7 +47,7 @@ module.exports = function (sequelize, DataTypes) {
 
       Category: {
         type: DataTypes.STRING,
-        defaultValue: "All"
+        defaultValue: "Shoes"
       },
 
       ContactEmail: {
