@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
 import Nav from "../components/Nav";
 
-class Books extends Component {
+class Main extends Component {
   state = {
     search: "",
     results: []
