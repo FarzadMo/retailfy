@@ -1,11 +1,9 @@
 import React from "react";
 
-function Nav() {
+function Nav({children}) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a className="navbar-brand" href="/">
-        Retailfy
-      </a>
+      {children}
     </nav>
   );
 }
