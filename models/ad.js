@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   let Ad = sequelize.define(
     "Ad",
     {
@@ -45,12 +45,12 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false
       },
 
-      Category: {
+      category: {
         type: DataTypes.STRING,
         defaultValue: "Shoes"
       },
 
-      ContactEmail: {
+      contactEmail: {
         type: DataTypes.STRING,
         allowNull: false,
 
@@ -67,7 +67,7 @@ module.exports = function (sequelize, DataTypes) {
     }
   );
 
-  Ad.associate = function (models) {
+  Ad.associate = function(models) {
     Ad.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
