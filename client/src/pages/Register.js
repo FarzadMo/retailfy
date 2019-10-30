@@ -57,7 +57,7 @@ class Register extends Component {
         email: this.state.SignUpEmail,
         password: this.state.SignUpPassword
       })
-        .then(res => this.setState({ TheOneUser: res }))
+        .then(res => this.setState({ TheOneUser: res.data }))
         .catch(err => console.log(err));
     }
     //We shoudl decide on HOW to implement this
@@ -92,6 +92,7 @@ class Register extends Component {
             {/* Sign In Section */}
             <Col size="md-6 sm-12">
               <h4>Sign In</h4>
+              <form>
               <Input
                 value={this.state.SignInEmail}
                 name="SignInEmail"
@@ -105,7 +106,8 @@ class Register extends Component {
                 placeholder="Password"
               ></Input>
 
-              <FormBtn onSubmit={() => this.handleFormSignIn}>Sign In</FormBtn>
+              <FormBtn onClick={() => this.handleFormSignIn}>Sign In</FormBtn>
+              </form>
             </Col>
 
             {/* Sign Up Section */}
@@ -148,7 +150,7 @@ class Register extends Component {
 
               <Row>
                 <Col size="sm-12">
-                  <FormBtn onSubmit={() => this.handleFormUserSubmit}>
+                  <FormBtn onClick={() => this.handleFormUserSubmit}>
                     Submit
                   </FormBtn>
                 </Col>

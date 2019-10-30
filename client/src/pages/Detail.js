@@ -7,7 +7,7 @@ import Nav from "../components/Nav";
 
 class Detail extends Component {
   state = {
-    results: []
+    oneAd: {}
   };
 
   componentDidMount() {
@@ -15,8 +15,8 @@ class Detail extends Component {
   }
 
   loadOneAd = () => {
-    API.getOneAdById()
-      .then(res => this.setState({ results: res }))
+    API.getOneAdById(this.props.match.params.id)
+      .then(res => this.setState({ oneAd: res.data }))
       .catch(err => console.log(err));
   };
 
@@ -30,7 +30,22 @@ class Detail extends Component {
         <Container fluid>
           <Row>
             <Col size="md-6 sm-12">
-              <Detail results={this.state.results}></Detail>
+
+              <h3> Title: {this.state.oneAd.title}</h3>
+              <h3> Category: {this.state.oneAd.category}</h3>
+              <h3> Location: {this.state.oneAd.location}</h3>
+              <h3> Price: {this.state.oneAd.price}</h3>
+              <h3> Contact Info: {this.state.oneAd.contactEmail}</h3>
+              <p> Description: {this.state.oneAd.description}</p>
+
+            </Col>
+            <Col size="md-6 sm-12">
+              <img
+                alt={this.state.oneAd.category}
+                src="https://1001freedownloads.s3.amazonaws.com/vector/thumb/63319/Placeholder.png"
+                //src = {result.image}
+                className="img-fluid"
+              />
             </Col>
           </Row>
         </Container>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import "./style.css";
 
 function SearchResults(props) {
@@ -11,7 +12,10 @@ function SearchResults(props) {
             src="https://1001freedownloads.s3.amazonaws.com/vector/thumb/63319/Placeholder.png"
             className="img-fluid"
           />
-          <h3> Title: {result.title}</h3>
+          <Link to={"/retailRoutes/" + result.id}>
+            <h3> Title: {result.title}</h3>
+          </Link>
+
           <h3>Price: {result.price}</h3>
           <p>Description: {result.description}</p>
         </li>
