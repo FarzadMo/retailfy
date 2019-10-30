@@ -72,79 +72,83 @@ class Adpost extends Component {
           <Link to="/">Sign Out</Link>
         </Nav>
         <Container fluid>
-          <Row>
-            <Col size="md-6 sm-12">
-              <Input
-                value={this.state.title}
-                name="Title"
-                Onchange={this.handleInputChange}
-                placeholder="Title"
-              ></Input>
-              <Input
-                value={this.state.category}
-                name="Category"
-                Onchange={this.handleInputChange}
-                placeholder="Category"
-                id="categories"
-              ></Input>
-              <datalist id="categories">
-                <option value="Coats" />
-                <option value="Jackets" />
-                <option value="Blazers" />
-                <option value="Suits" />
-                <option value="Dresses" />
-                <option value="T-shirts" />
-                <option value="Pants" />
-                <option value="Jeans" />
-                <option value="Skirt/Shorts" />
-                <option value="Shoes" />
-                <option value="Bags" />
-                <option value="Accessories" />
-              </datalist>
-              {/* <Input
+          <form>
+            <Row>
+              <Col size="md-6 sm-12">
+                <Input
+                  value={this.state.title}
+                  name="Title"
+                  Onchange={this.handleInputChange}
+                  placeholder="Title"
+                ></Input>
+                <Input
+                  value={this.state.category}
+                  name="Category"
+                  Onchange={this.handleInputChange}
+                  placeholder="Category"
+                  id="categories"
+                ></Input>
+                <datalist id="categories">
+                  <option value="Coats" />
+                  <option value="Jackets" />
+                  <option value="Blazers" />
+                  <option value="Suits" />
+                  <option value="Dresses" />
+                  <option value="T-shirts" />
+                  <option value="Pants" />
+                  <option value="Jeans" />
+                  <option value="Skirt/Shorts" />
+                  <option value="Shoes" />
+                  <option value="Bags" />
+                  <option value="Accessories" />
+                </datalist>
+                {/* <Input
                                 value={this.state.image}
                                 name="Location"
                                 Onchange={this.handleInputChange}
                                 placeholder=""
                             ></Input> */}
-              <Input
-                value={this.state.location}
-                name="Location"
-                Onchange={this.handleInputChange}
-                placeholder="Location"
-              ></Input>
-              <Input
-                value={this.state.contactInfo}
-                name="Contact Info"
-                Onchange={this.handleInputChange}
-                placeholder="Contact Info"
-              ></Input>
-              <Input
-                value={this.state.title}
-                name="Price"
-                Onchange={this.handleInputChange}
-                placeholder="Price"
-              ></Input>
-            </Col>
+                <Input
+                  value={this.state.location}
+                  name="Location"
+                  Onchange={this.handleInputChange}
+                  placeholder="Location"
+                ></Input>
+                <Input
+                  value={this.state.contactInfo}
+                  name="Contact Info"
+                  Onchange={this.handleInputChange}
+                  placeholder="Contact Info"
+                ></Input>
+                <Input
+                  value={this.state.title}
+                  name="Price"
+                  Onchange={this.handleInputChange}
+                  placeholder="Price"
+                ></Input>
+              </Col>
 
-            <Col size="md-6 sm-12">
-              <Row>
-                <Col size="sm-12">
-                  <TextArea
-                    value={this.state.description}
-                    name="Description"
-                    Onchange={this.handleInputChange}
-                    placeholder="Description"
-                  ></TextArea>
-                </Col>
-              </Row>
-              <Row>
-                <Col size="sm-12">
-                  <FormBtn>Submit</FormBtn>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
+              <Col size="md-6 sm-12">
+                <Row>
+                  <Col size="sm-12">
+                    <TextArea
+                      value={this.state.description}
+                      name="Description"
+                      Onchange={this.handleInputChange}
+                      placeholder="Description"
+                    ></TextArea>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col size="sm-12">
+                    <FormBtn onClick={() => this.handleFormSubmit}>
+                      Submit
+                    </FormBtn>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </form>
         </Container>
       </>
     );
