@@ -26,12 +26,12 @@ export default {
   },
 
   //post or create a new user info
-  postNewUser: function() {
-    return axios.post("/api/user/adduser");
+  postNewUser: function(userInfo) {
+    return axios.post("/api/user/adduser",userInfo);
   },
 
   //get A user info by Email and do the authentication
   getOneUserByEmail: function() {
-    return axios.get("/api/user/auth");
+    return axios.post("/api/user/auth");
   }
 };

@@ -33,7 +33,7 @@ class Main extends Component {
     event.preventDefault();
     if (this.state.search) {
       API.getAdsByCategory(this.state.search)
-        .then(res => this.setState({ results: res }))
+        .then(res => this.setState({ results: res.data }))
         .catch(err => console.log(err));
     }
   };
@@ -61,8 +61,8 @@ class Main extends Component {
             {this.state.results.length ? (
               <SearchResults results={this.state.results} />
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Row>
         </Container>
       </>
