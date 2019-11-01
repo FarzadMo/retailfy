@@ -15,7 +15,7 @@ function App() {
           <Route exact path="/" component={Main} />
           <Route exact path="/adpost" component={Adpost} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/detail" component={Detail} />
+          <Route exact path="/detail/:id" component={Detail} />
           <Route component={NoMatch} />
         </Switch>
       </div>

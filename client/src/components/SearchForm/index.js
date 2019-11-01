@@ -11,10 +11,9 @@ function SearchForm(props) {
                     value={props.search}
                     onChange={props.handleInputChange}
                     name="search"
-                    type="text"
                     className="form-control"
-                    placeholder="Search Your Favorites Here (required)"
-                    id="categories"
+                    placeholder="Search Your Favorites Here (required)"     
+                    list="categories"
                 />
                 <datalist id="categories">
 

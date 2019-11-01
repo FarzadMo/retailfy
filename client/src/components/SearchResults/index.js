@@ -12,7 +12,7 @@ function SearchResults(props) {
             src="https://1001freedownloads.s3.amazonaws.com/vector/thumb/63319/Placeholder.png"
             className="img-fluid"
           />
-          <Link to={"/retailRoutes/" + result.id}>
+          <Link to={"/detail/" + result.id}>
             <h3> Title: {result.title}</h3>
           </Link>
 
