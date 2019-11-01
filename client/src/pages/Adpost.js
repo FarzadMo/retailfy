@@ -13,7 +13,7 @@ class Adpost extends Component {
     description: "",
     //    image:""
     price: 0,
-    category: "Shoes",
+    category: "",
     contactInfo: "",
     redirect: false
   };
@@ -86,7 +86,7 @@ class Adpost extends Component {
                   name="Category"
                   Onchange={this.handleInputChange}
                   placeholder="Category"
-                  id="categories"
+                  list="categories"
                 ></Input>
                 <datalist id="categories">
                   <option value="Coats" />
@@ -108,6 +108,17 @@ class Adpost extends Component {
                                 Onchange={this.handleInputChange}
                                 placeholder=""
                             ></Input> */}
+
+{/* <img src="./images/uploads/{{experience.image}}" onerror="this.onerror=null; this.src='images/toronto.jpg'" id="picture" class="exp-form-image">
+                {{!-- File upload form --}}
+                <form action="/api/uploadfile" method="post" id="upload-form">
+                    <label for="file" class="input-file">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload a Picture
+                        <input type="file" name="file" id="file" />
+                    </label>
+                </form> */}
+
+                
                 <Input
                   value={this.state.location}
                   name="Location"
@@ -141,7 +152,9 @@ class Adpost extends Component {
                 </Row>
                 <Row>
                   <Col size="sm-12">
-                    <FormBtn onClick={() => this.handleFormSubmit}>
+                    <FormBtn
+                      disabled={!(this.state.title && this.state.location && this.state.description && this.state.image && this.state.price && this.state.contactInfo)}
+                      onClick={() => this.handleFormSubmit}>
                       Submit
                     </FormBtn>
                   </Col>
