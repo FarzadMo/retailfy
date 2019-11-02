@@ -3,6 +3,7 @@
 const express = require("express");
 const routes = require("./routes");
 const db = require("./models");
+const fileUpload = require("express-fileupload");
 let session = require("express-session");
 
 const app = express();
@@ -22,6 +23,8 @@ app.use(
     saveUninitialized: true
   })
 );
+
+app.use(fileUpload());
 
 // Routes
 app.use(routes);
