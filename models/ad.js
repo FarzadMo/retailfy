@@ -63,7 +63,30 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     {
-      freezeTableName: true
+      freezeTableName: true,
+      hooks: {
+        //trigger to update the file name after store on database
+        afterCreate: function(experience) {
+          if (experience.image) {
+            let fileName =
+              "experience_" + experience.id + "." + experience.image;
+            experience.image = fileName;
+
+            Experience.update(
+              {
+                image: fileName
+              },
+              {
+                where: {
+                  id: experience.id
+                }
+              }
+            ).then(() => {
+              console.log("Image renamed!");
+            });
+          }
+        }
+      }
     }
   );
 
