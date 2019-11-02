@@ -102,23 +102,11 @@ class Adpost extends Component {
                   <option value="Bags" />
                   <option value="Accessories" />
                 </datalist>
-                {/* <Input
-                                value={this.state.image}
-                                name="Location"
-                                Onchange={this.handleInputChange}
-                                placeholder=""
-                            ></Input> */}
+                {/*//////////////// form for image /////////////////////*/}
 
-{/* <img src="./images/uploads/{{experience.image}}" onerror="this.onerror=null; this.src='images/toronto.jpg'" id="picture" class="exp-form-image">
-                {{!-- File upload form --}}
-                <form action="/api/uploadfile" method="post" id="upload-form">
-                    <label for="file" class="input-file">
-                        <i class="fas fa-cloud-upload-alt"></i> Upload a Picture
-                        <input type="file" name="file" id="file" />
-                    </label>
-                </form> */}
 
-                
+
+
                 <Input
                   value={this.state.location}
                   name="Location"
