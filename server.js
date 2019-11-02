@@ -7,7 +7,7 @@ const fileUpload = require("express-fileupload");
 let session = require("express-session");
 
 const app = express();
-const PORT = process.env.PORT || 3040;
+const PORT = process.env.PORT || 3046;
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -38,8 +38,8 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });
 });

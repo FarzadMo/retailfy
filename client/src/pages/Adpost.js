@@ -5,18 +5,57 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import Nav from "../components/Nav";
-
+import Fileupload from "../components/Fileupload";
 class Adpost extends Component {
   state = {
     title: "",
     location: "",
     description: "",
-    //    image:""
     price: 0,
     category: "",
     contactInfo: "",
-    redirect: false
+    redirect: false,
+    ////////////// image///////
+    file: "",
+    filename: "",
+    uploadedFile: {}
+
   };
+
+  //////////////uploading image///////////
+
+  onChange = e => {
+    // event.target has files property which is an array of files, in our case we uplaod just one image so we want files[0]
+    this.setState({ file: e.target.files[0] });
+
+    // file[0] is an object and has propert of name which is the name of the file that has selected
+    this.setState({ filename: e.target.files[0].name })
+  }
+
+  onSubmit = async e => {
+    e.preventDefault();
+    // formData is part of javascript- we store the image file in formData and we post it throgh API
+    const formData = new FormData();
+    formData.append('file', this.state.file);
+    try {
+      const res = await API.uploadImage(formData);
+
+
+      // the res coming back from the server includes file name and file path
+      this.setState({ uploadedFile: { fileName: res.data.fileName, filePath: res.data.filePath } })
+
+
+
+    }
+    catch (err) {
+      if (err.response.status === 500) {
+        console.log('there was a problem with the server')
+      } else {
+        console.log(err.response.data.msg);
+      }
+    }
+
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -50,7 +89,7 @@ class Adpost extends Component {
         title: this.state.title,
         location: this.state.location,
         description: this.state.description,
-        // image: this.state.image,
+        image: this.state.filename,
         price: this.state.price,
         category: this.state.category,
         contactEmail: this.state.contactInfo
@@ -102,9 +141,9 @@ class Adpost extends Component {
                   <option value="Bags" />
                   <option value="Accessories" />
                 </datalist>
-                {/*//////////////// form for image /////////////////////*/}
 
-
+                {/* upload the image */}
+                <Fileupload onSubmit={this.onSubmit} onChange={this.onChange} uploadedFile={this.state.uploadedFile} filename={this.state.filename} />
 
 
                 <Input
