@@ -3,11 +3,11 @@
 const express = require("express");
 const routes = require("./routes");
 const db = require("./models");
-const fileUpload = require("express-fileupload");
 let session = require("express-session");
+const fileUpload = require("express-fileupload")
 
 const app = express();
-const PORT = process.env.PORT || 3046;
+const PORT = process.env.PORT || 3044;
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +24,7 @@ app.use(
   })
 );
 
+
 app.use(fileUpload());
 
 // Routes
@@ -33,9 +34,9 @@ let syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
+// if (process.env.NODE_ENV === "test") {
+//   syncOptions.force = true;
+// }
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function () {

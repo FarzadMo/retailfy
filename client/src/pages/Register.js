@@ -18,6 +18,7 @@ class Register extends Component {
     lastName: "",
     SignUpEmail: "",
     SignUpPassword: "",
+    registered:"",
 
     //page redirection
     redirect: false
@@ -45,6 +46,7 @@ class Register extends Component {
   //Sign Up section/onSubmit event--> post a new user
   handleFormUserSubmit = event => {
     event.preventDefault();
+    console.log("password" + this.state.SignUpPassword)
     if (
       this.state.firstName &&
       this.state.lastName &&
@@ -60,23 +62,29 @@ class Register extends Component {
         .then(res => this.setState({ TheOneUser: res.data }))
         .catch(err => console.log(err));
     }
-    //We shoudl decide on HOW to implement this
+    //reset form
+    this.setState({firstName:"", lastName:"", SignUpEmail:"", SignUpPassword:""})
+    //registered
+    this.setState({registered:"Registered successfully!"})
   };
 
   //Sign In section/onSubmit event--> validate a user
   handleFormSignIn = event => {
     event.preventDefault();
+    console.log("signin" + this.state.SignInEmail)
     if (this.state.SignInEmail && this.state.SignInPassword) {
       API.getOneUserByEmail({
         email: this.state.SignInEmail,
         password: this.state.SignInPassword
       })
-        .then(res => console.log(res))
+        .then(res => console.log("this is " + res))
         .catch(err => console.log(err));
     }
     //  set the redirect state to true after saving the post into database
-    this.setRedirect();
+    //  this.setRedirect();
   };
+
+
 
   render() {
     return (
@@ -88,25 +96,27 @@ class Register extends Component {
         </Nav>
 
         <Container fluid>
+
           <Row>
             {/* Sign In Section */}
             <Col size="md-6 sm-12">
               <h4>Sign In</h4>
               <form>
-              <Input
-                value={this.state.SignInEmail}
-                name="SignInEmail"
-                Onchange={this.handleInputChange}
-                placeholder="Email"
-              ></Input>
-              <Input
-                value={this.state.SignInPassword}
-                name="SignInPassword"
-                Onchange={this.handleInputChange}
-                placeholder="Password"
-              ></Input>
+                <Input
+                  value={this.state.SignInEmail}
+                  name="SignInEmail"
+                  onChange={this.handleInputChange}
+                  placeholder="Email"
+                />
+                <Input
+                  value={this.state.SignInPassword}
+                  name="SignInPassword"
+                  onChange={this.handleInputChange}
+                  placeholder="Password"
+                />
 
-              <FormBtn onClick={() => this.handleFormSignIn}>Sign In</FormBtn>
+                <FormBtn
+                  onClick={this.handleFormSignIn}>Sign In</FormBtn>
               </form>
             </Col>
 
@@ -117,16 +127,16 @@ class Register extends Component {
                   <Input
                     value={this.state.firstName}
                     name="firstName"
-                    Onchange={this.handleInputChange}
+                    onChange={this.handleInputChange}
                     placeholder="First Name"
-                  ></Input>
+                  />
 
                   <Input
                     value={this.state.lastName}
                     name="lastName"
-                    Onchange={this.handleInputChange}
+                    onChange={this.handleInputChange}
                     placeholder="Last Name"
-                  ></Input>
+                  />
                 </Col>
               </Row>
 
@@ -135,22 +145,24 @@ class Register extends Component {
                   <Input
                     value={this.state.SignUpEmail}
                     name="SignUpEmail"
-                    Onchange={this.handleInputChange}
+                    onChange={this.handleInputChange}
                     placeholder="Email"
-                  ></Input>
+                  />
 
                   <Input
                     value={this.state.SignUpPassword}
                     name="SignUpPassword"
-                    Onchange={this.handleInputChange}
+                    onChange={this.handleInputChange}
                     placeholder="Password"
-                  ></Input>
+                  />
                 </Col>
               </Row>
-
+               <Row>
+                 <p>{this.state.registered}</p>
+               </Row>
               <Row>
                 <Col size="sm-12">
-                  <FormBtn onClick={() => this.handleFormUserSubmit}>
+                  <FormBtn onClick={this.handleFormUserSubmit}>
                     Submit
                   </FormBtn>
                 </Col>

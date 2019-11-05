@@ -36,14 +36,21 @@ class Main extends Component {
         .then(res => this.setState({ results: res.data }))
         .catch(err => console.log(err));
     }
+    // reset form
+    this.setState({ search: "" })
   };
 
+  handleLogOut = () => {
+   
+    API.logOut();
+  }
   render() {
     return (
       <>
         <Nav>
           <Link to="/">Retailfy</Link>
           <Link to="/register">Log In/ Sign Up</Link>
+          <button onClick={this.handleLogOut}>Log Out</button>
           <Link to="/adpost">Post Ad</Link>
         </Nav>
         <Container fluid>

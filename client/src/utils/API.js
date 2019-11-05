@@ -31,11 +31,23 @@ export default {
   },
 
   //get A user info by Email and do the authentication
-  getOneUserByEmail: function () {
-    return axios.post("/api/user/auth");
+  getOneUserByEmail: function (userinformation) {
+    return axios.post("/api/user/auth", userinformation);
   },
+
   // post an image 
   uploadImage: function (data) {
+
     return axios.post("/api/upload/", data);
+  },
+
+  //logout
+
+  logOut: function (data) {
+
+    return axios.post("/api/user/logout", data);
   }
+
+
+
 };

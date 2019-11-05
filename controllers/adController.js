@@ -1,39 +1,46 @@
 const db = require("../models");
+let fs = require("fs");
 
 // Defining methods for the adController
 module.exports = {
-  findAll: function(req, res) {
+  findAll: function (req, res) {
     db.Ad.findAll()
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(500).json(err));
   },
-  findByCategory: function(req, res) {
+  findByCategory: function (req, res) {
     db.Ad.findAll({ where: { category: req.params.category } })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(500).json(err));
   },
-  create: function(req, res) {
+  create: function (req, res) {
+    console.log( "req.seeson"+req.session.loggedin)
     if (!req.session.loggedin) {
       res.status(400).end("You need to sign in to create an experience");
     } else {
       //set the user id from the session
+      console.log("req.session"+req.session.UserId)
       req.body.UserId = req.session.UserId;
-
+      console.log("req.body" + req.body.image)
       //store the new experience on the database
+
       db.Ad.create(req.body)
-        .then(function(exp) {
+        .then(function (ad) {
           //if there is file sent
+          console.log("addddddddddd" + ad.image)
           if (req.body.image !== "") {
-            //check if the exists in the temp folder
-            if (fs.existsSync(`./client/public/uploads/${req.body.image}`)) {
+            console.log("ad" + ad.image)
+            console.log("aaaaaaaaaad" + req.body.image)
+            //check if the exists in the upload folder
+            if (fs.existsSync(`./client/public/uploads/tmp/${req.body.image}`)) {
               //rename the file and move it to definitive folder
               fs.renameSync(
-                `./client/public/uploads/${req.body.image}`,
-                `./client/public/uploads/${exp.image}`
+                `./client/public/uploads/tmp/${req.body.image}`,
+                `./client/public/uploads/${ad.image}`
               );
             }
           }
-          res.json(exp);
+          res.json(ad);
         })
         .catch(err => {
           if (err.errors) {
@@ -44,7 +51,7 @@ module.exports = {
         });
     }
   },
-  findAdById: function(req, res) {
+  findAdById: function (req, res) {
     db.Ad.findAll({ where: { id: req.params.id } })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(500).json(err));
