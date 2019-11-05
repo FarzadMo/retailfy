@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   let Ad = sequelize.define(
     "Ad",
     {
@@ -47,7 +47,7 @@ module.exports = function(sequelize, DataTypes) {
 
       category: {
         type: DataTypes.STRING,
-        defaultValue: "Shoes"
+        // defaultValue: "Shoes"
       },
 
       contactEmail: {
@@ -66,19 +66,19 @@ module.exports = function(sequelize, DataTypes) {
       freezeTableName: true,
       hooks: {
         //trigger to update the file name after store on database
-        afterCreate: function(experience) {
-          if (experience.image) {
+        afterCreate: function (ad) {
+          if (ad.image) {
             let fileName =
-              "experience_" + experience.id + "." + experience.image;
-            experience.image = fileName;
+              "Ad" +ad.id + "." + ad.image;
+            ad.image = fileName;
 
-            Experience.update(
+            Ad.update(
               {
                 image: fileName
               },
               {
                 where: {
-                  id: experience.id
+                  id: ad.id
                 }
               }
             ).then(() => {
@@ -90,7 +90,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   );
 
-  Ad.associate = function(models) {
+  Ad.associate = function (models) {
     Ad.belongsTo(models.User, {
       foreignKey: {
         allowNull: false

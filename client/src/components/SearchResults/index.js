@@ -9,7 +9,7 @@ function SearchResults(props) {
         <li key={result} className="list-group-item">
           <img
             alt={result.category}
-            src="https://1001freedownloads.s3.amazonaws.com/vector/thumb/63319/Placeholder.png"
+            src={`uploads/${result.image}`}
             className="img-fluid"
           />
           <Link to={"/detail/" + result.id}>

@@ -6,14 +6,15 @@ import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import Nav from "../components/Nav";
 import Fileupload from "../components/Fileupload";
+
 class Adpost extends Component {
   state = {
-    title: "",
-    location: "",
-    description: "",
-    price: 0,
-    category: "",
-    contactInfo: "",
+    Title: "",
+    Location: "",
+    Description: "",
+    Price: 0,
+    Category: "",
+    Contact: "",
     redirect: false,
     ////////////// image///////
     file: "",
@@ -78,27 +79,32 @@ class Adpost extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    console.log(this.state.Title)
+    console.log(this.state.Location)
+    console.log(this.state.Description)
     if (
-      this.state.title &&
-      this.state.location &&
-      this.state.description &&
-      this.state.price &&
-      this.state.contactInfo
+      this.state.Title &&
+      this.state.Location &&
+      this.state.Description &&
+      this.state.Price &&
+      this.state.Contact
     ) {
       API.saveAd({
-        title: this.state.title,
-        location: this.state.location,
-        description: this.state.description,
+        title: this.state.Title,
+        location: this.state.Location,
+        description: this.state.Description,
         image: this.state.filename,
-        price: this.state.price,
-        category: this.state.category,
-        contactEmail: this.state.contactInfo
+        price: this.state.Price,
+        category: this.state.Category,
+        contactEmail: this.state.Contact
       })
-        .then(res => console.log(res))
+        .then(res => console.log("this is" + res))
         .catch(err => console.log(err));
     }
+    // reset form
+    this.setState({ Title: "", Location: "", Description: "", image: "", Category: "", Price: "", Contact: "", file: "", filename: "" })
     //  set the redirect state to true after saving the post into database
-    this.setRedirect();
+    //  this.setRedirect();
   };
 
   render() {
@@ -111,22 +117,23 @@ class Adpost extends Component {
           <Link to="/">Sign Out</Link>
         </Nav>
         <Container fluid>
+
           <form>
             <Row>
               <Col size="md-6 sm-12">
                 <Input
-                  value={this.state.title}
+                  value={this.state.Title}
                   name="Title"
-                  Onchange={this.handleInputChange}
+                  onChange={this.handleInputChange}
                   placeholder="Title"
-                ></Input>
+                />
                 <Input
-                  value={this.state.category}
+                  value={this.state.Category}
                   name="Category"
-                  Onchange={this.handleInputChange}
+                  onChange={this.handleInputChange}
                   placeholder="Category"
                   list="categories"
-                ></Input>
+                />
                 <datalist id="categories">
                   <option value="Coats" />
                   <option value="Jackets" />
@@ -147,32 +154,33 @@ class Adpost extends Component {
 
 
                 <Input
-                  value={this.state.location}
+                  value={this.state.Location}
                   name="Location"
-                  Onchange={this.handleInputChange}
+                  onChange={this.handleInputChange}
                   placeholder="Location"
-                ></Input>
+                />
                 <Input
-                  value={this.state.contactInfo}
-                  name="Contact Info"
-                  Onchange={this.handleInputChange}
-                  placeholder="Contact Info"
-                ></Input>
+                  value={this.state.Contact}
+                  name="Contact"
+                  onChange={this.handleInputChange}
+                  placeholder="Contact"
+
+                />
                 <Input
-                  value={this.state.title}
+                  value={this.state.Price}
                   name="Price"
-                  Onchange={this.handleInputChange}
+                  onChange={this.handleInputChange}
                   placeholder="Price"
-                ></Input>
+                />
               </Col>
 
               <Col size="md-6 sm-12">
                 <Row>
                   <Col size="sm-12">
                     <TextArea
-                      value={this.state.description}
+                      value={this.state.Description}
                       name="Description"
-                      Onchange={this.handleInputChange}
+                      onChange={this.handleInputChange}
                       placeholder="Description"
                     ></TextArea>
                   </Col>
@@ -180,10 +188,11 @@ class Adpost extends Component {
                 <Row>
                   <Col size="sm-12">
                     <FormBtn
-                      disabled={!(this.state.title && this.state.location && this.state.description && this.state.image && this.state.price && this.state.contactInfo)}
-                      onClick={() => this.handleFormSubmit}>
+                      // disabled={!(this.state.Title && this.state.Location && this.state.Description && this.state.image && this.state.Price && this.state.Contact
+                      //   )}
+                      onClick={this.handleFormSubmit}>
                       Submit
-                    </FormBtn>
+                  </FormBtn>
                   </Col>
                 </Row>
               </Col>
