@@ -7,19 +7,27 @@ import Register from "./pages/Register";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 
+//redux
+import { Provider } from "react-redux";
+import store from "./Store";        
+
 function App() {
+
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path="/" component={Main} />
-          <Route exact path="/adpost" component={Adpost} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/detail/:id" component={Detail} />
-          <Route component={NoMatch} />
-        </Switch>
-      </div>
-    </Router>
+    // provider is a glue from react and redux, it takes the store which holds the state tree of the whole application
+    <Provider store={store}>
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route exact path="/adpost" component={Adpost} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/detail/:id" component={Detail} />
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 

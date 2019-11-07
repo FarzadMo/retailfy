@@ -6,6 +6,11 @@ import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
 import Nav from "../components/Nav";
 
+//redux
+import { connect } from 'react-redux';
+import { userAuth } from '../actions/authAction';
+// import PropTypes from 'prop-types';
+
 class Main extends Component {
   state = {
     search: "",
@@ -41,16 +46,22 @@ class Main extends Component {
   };
 
   handleLogOut = () => {
-   
+
     API.logOut();
+    this.props.userAuth(false)
   }
   render() {
+
+    const isAuthenticated= this.props.authstate
     return (
       <>
         <Nav>
           <Link to="/">Retailfy</Link>
-          <Link to="/register">Log In/ Sign Up</Link>
-          <button onClick={this.handleLogOut}>Log Out</button>
+          {isAuthenticated ? (<button onClick={this.handleLogOut}>Log Out</button>) : (
+            <Link to="/register">Log In/ Sign Up</Link>
+          )}
+          {/* <Link to="/register">Log In/ Sign Up</Link> */}
+          {/* <button onClick={this.handleLogOut}>Log Out</button> */}
           <Link to="/adpost">Post Ad</Link>
         </Nav>
         <Container fluid>
@@ -77,4 +88,14 @@ class Main extends Component {
   }
 }
 
-export default Main;
+// Main.proptypes = {
+
+//   authstate: PropTypes.bool.isRequired
+
+// }
+// we need to get new state (auth) from the store- we use mapstateToProps to get state from the store and map it to properties of the component which in this case is main.js
+const mapStateToProps = state => ({
+  authstate: state.auth.authitem        // the resean We used auth is that in rootReducer we use auth: authReducer/ what do we want from our authReducer is authuser state
+})                                  // so we map authstate to auth property- we access to this state from the store through this.props.auth
+
+export default connect(mapStateToProps, { userAuth })(Main);

@@ -7,6 +7,10 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 import Nav from "../components/Nav";
 import Fileupload from "../components/Fileupload";
 
+// redux
+import { connect } from 'react-redux';
+import { userAuth } from '../actions/authAction';
+
 class Adpost extends Component {
   state = {
     Title: "",
@@ -107,14 +111,25 @@ class Adpost extends Component {
     //  this.setRedirect();
   };
 
+  handleLogOut = () => {
+
+    API.logOut();
+    this.props.userAuth(false)
+  }
+
+
   render() {
+    const isAuthenticated = this.props.authstate
+    console.log(this.props.authstate)
     return (
       <>
         {/* redirect to main page after submitting */}
         {this.renderRedirect()}
         <Nav>
           <Link to="/">Retailfy</Link>
-          <Link to="/">Sign Out</Link>
+          {isAuthenticated ? (<button onClick={this.handleLogOut}>Log Out</button>) : (
+            <Link to="/register">Log In/ Sign Up</Link>
+          )}
         </Nav>
         <Container fluid>
 
@@ -204,4 +219,10 @@ class Adpost extends Component {
   }
 }
 
-export default Adpost;
+
+// we need to get new state (auth) from the store- we use mapstateToProps to get state from the store and map it to properties of the component which in this case is main.js
+const mapStateToProps = state => ({
+  authstate: state.auth.authitem        // the resean We used auth is that in rootReducer we use auth: authReducer/ what do we want from our authReducer is authuser state
+})                                  // so we map authstate to auth property- we access to this state from the store through this.props.auth
+
+export default connect(mapStateToProps, { userAuth })(Adpost);
