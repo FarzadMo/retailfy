@@ -6,6 +6,12 @@ import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
 import Nav from "../components/Nav";
 
+// Redux
+
+import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
+import { userAuth } from '../actions/authAction';
+
 class Register extends Component {
   state = {
     // Sign In State
@@ -18,10 +24,11 @@ class Register extends Component {
     lastName: "",
     SignUpEmail: "",
     SignUpPassword: "",
-    registered:"",
+    registered: "",
 
     //page redirection
-    redirect: false
+    redirect: false,
+    authstate: false
   };
 
   handleInputChange = event => {
@@ -63,9 +70,9 @@ class Register extends Component {
         .catch(err => console.log(err));
     }
     //reset form
-    this.setState({firstName:"", lastName:"", SignUpEmail:"", SignUpPassword:""})
+    this.setState({ firstName: "", lastName: "", SignUpEmail: "", SignUpPassword: "" })
     //registered
-    this.setState({registered:"Registered successfully!"})
+    this.setState({ registered: "Registered successfully!" })
   };
 
   //Sign In section/onSubmit event--> validate a user
@@ -77,11 +84,16 @@ class Register extends Component {
         email: this.state.SignInEmail,
         password: this.state.SignInPassword
       })
-        .then(res => console.log("this is " + res))
+        .then(res => {
+          this.setState({ authstate: true });
+          console.log(this.state.authstate);
+          this.props.userAuth(this.state.authstate);
+          this.setRedirect();
+        })     //call userAuth action-Redux
         .catch(err => console.log(err));
     }
     //  set the redirect state to true after saving the post into database
-    //  this.setRedirect();
+
   };
 
 
@@ -157,9 +169,9 @@ class Register extends Component {
                   />
                 </Col>
               </Row>
-               <Row>
-                 <p>{this.state.registered}</p>
-               </Row>
+              <Row>
+                <p>{this.state.registered}</p>
+              </Row>
               <Row>
                 <Col size="sm-12">
                   <FormBtn onClick={this.handleFormUserSubmit}>
@@ -175,4 +187,16 @@ class Register extends Component {
   }
 }
 
-export default Register;
+// Register.proptypes={
+
+// userAuth: PropTypes.func.isRequired,
+// // auth: React.PropTypes.bool.isRequired
+
+// }
+
+// const mapStateToProps = state => ({
+//   authstate: state.auth.authitem        // the resean We used auth is that in rootReducer we use auth: authReducer/ what do we want from our authReducer is authuser state
+// })
+
+//redux 
+export default connect(null, { userAuth })(Register);
