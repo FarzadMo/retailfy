@@ -87,9 +87,9 @@ class Register extends Component {
         .then(res => {
           this.setState({ authstate: true });
           console.log(this.state.authstate);
-          this.props.userAuth(this.state.authstate);
+          this.props.userAuth(this.state.authstate);  //call userAuth action-Redux
           this.setRedirect();
-        })     //call userAuth action-Redux
+        })
         .catch(err => console.log(err));
     }
     //  set the redirect state to true after saving the post into database
