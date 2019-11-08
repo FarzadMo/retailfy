@@ -14,12 +14,12 @@ module.exports = {
       .catch(err => res.status(500).json(err));
   },
   create: function (req, res) {
-    console.log( "req.seeson"+req.session.loggedin)
+    console.log("req.seeson" + req.session.loggedin)
     if (!req.session.loggedin) {
       res.status(400).end("You need to sign in to create an experience");
     } else {
       //set the user id from the session
-      console.log("req.session"+req.session.UserId)
+      console.log("req.session" + req.session.UserId)
       req.body.UserId = req.session.UserId;
       console.log("req.body" + req.body.image)
       //store the new experience on the database
@@ -52,7 +52,7 @@ module.exports = {
     }
   },
   findAdById: function (req, res) {
-    db.Ad.findAll({ where: { id: req.params.id } })
+    db.Ad.findByPk(parseInt(req.params.id))
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(500).json(err));
   }
