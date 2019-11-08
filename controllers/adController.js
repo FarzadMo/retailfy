@@ -52,7 +52,7 @@ module.exports = {
     }
   },
   findAdById: function (req, res) {
-    db.Ad.findAll({ where: { id: req.params.id } })
+    db.Ad.findByPk( parseInt(req.params.id))
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(500).json(err));
   }

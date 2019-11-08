@@ -20,6 +20,9 @@ class Detail extends Component {
   };
 
   render() {
+    console.log(this.state.oneAd.id)
+    console.log(this.state.oneAd.image)
+
     return (
       <>
         <Nav>
@@ -37,12 +40,14 @@ class Detail extends Component {
               <p> Description: {this.state.oneAd.description}</p>
             </Col>
             <Col size="md-6 sm-12">
-              <img
-                alt={this.state.oneAd.category}
-                src="https://1001freedownloads.s3.amazonaws.com/vector/thumb/63319/Placeholder.png"
-                //src = {result.image}
-                className="img-fluid"
-              />
+              <div>
+                <img
+                  alt={this.state.oneAd.category}
+                  src={`./../uploads/${this.state.oneAd.image}`}
+                  className="img-fluid"
+                />
+              </div>
+
             </Col>
           </Row>
         </Container>
