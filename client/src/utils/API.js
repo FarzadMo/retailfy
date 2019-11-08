@@ -22,7 +22,7 @@ export default {
 
   //Retrieving data for ONE Ad based on Id
   getOneAdById: function (id) {
-    return axios.get("/api/retailRoutes/" + id);
+    return axios.get("/api/retailRoutes/detail/" + id);
   },
 
   //post or create a new user info

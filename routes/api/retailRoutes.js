@@ -6,7 +6,7 @@ router.route("/").get(adController.findAll);
 
 router.route("/:category").get(adController.findByCategory);
 
-router.route("/:id").get(adController.findAdById);
+router.route("/detail/:id").get(adController.findAdById);
 
 router.route("/adpost").post(adController.create);
 
