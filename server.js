@@ -44,7 +44,7 @@ let syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
+if (process.env.NODE_ENV === "development") {
   syncOptions.force = true;
 }
 
@@ -53,7 +53,7 @@ db.sequelize.sync(syncOptions).then(function() {
   if (syncOptions.force) {
     //execute the schema changes and the seeds
     let schema = fs.readFileSync("./scripts/schema.sql", { encoding: "utf8" });
-    let seeds = fs.readFileSync("./scripts/seedDB.js", { encoding: "utf8" });
+    let seeds = fs.readFileSync("./scripts/seedDB.sql", { encoding: "utf8" });
 
     db.sequelize.query(schema + seeds, { raw: true }).then(() => {
       runServer();
