@@ -11,6 +11,7 @@ import Nav from "../components/Nav";
 import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 import { userAuth } from '../actions/authAction';
+import { userInformation } from '../actions/userAction';
 
 class Register extends Component {
   state = {
@@ -28,7 +29,8 @@ class Register extends Component {
 
     //page redirection
     redirect: false,
-    authstate: false
+    authstate: false,
+    userinfo: {}
   };
 
   handleInputChange = event => {
@@ -85,10 +87,12 @@ class Register extends Component {
         password: this.state.SignInPassword
       })
         .then(res => {
-          console.log("userInfo"+JSON.stringify(res.data))
+          console.log("userInfo" + JSON.stringify(res.data))
           this.setState({ authstate: true });
+          this.setState({ userinfo: res.data });
           console.log(this.state.authstate);
           this.props.userAuth(this.state.authstate);  //call userAuth action-Redux
+          this.props.userInformation(this.state.userinfo);  //call  action-Redux
           this.setRedirect();
         })
         .catch(err => console.log(err));
@@ -200,4 +204,4 @@ class Register extends Component {
 // })
 
 //redux 
-export default connect(null, { userAuth })(Register);
+export default connect(null, { userAuth, userInformation })(Register);

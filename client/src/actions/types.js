@@ -1,1 +1,3 @@
 export const AUTHENTICATION = 'AUTHENTICATION ';
+export const USERINFO = 'USERINFO ';
+
