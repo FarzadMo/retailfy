@@ -120,6 +120,9 @@ class Adpost extends Component {
 
   render() {
     const isAuthenticated = this.props.authstate
+    console.log("useId" + this.props.user)
+    const user1 = this.props.user
+    console.log(user1.userName)
     // console.log(this.props.authstate)
     return (
       <>
@@ -127,9 +130,17 @@ class Adpost extends Component {
         {this.renderRedirect()}
         <Nav>
           <Link to="/">Retailfy</Link>
-          {isAuthenticated ? (<button onClick={this.handleLogOut}>Log Out</button>) : (
-            <Link to="/register">Log In/ Sign Up</Link>
-          )}
+          {isAuthenticated ? (
+            <select >{this.props.user.userName}
+              <option>My Ads</option>
+              <option onClick={this.handleLogOut}>Log out</option>
+
+            </select>
+
+
+          ) : (
+              <Link to="/register">Log In/ Sign Up</Link>
+            )}
 
 
 
@@ -227,7 +238,9 @@ class Adpost extends Component {
 
 // we need to get new state (auth) from the store- we use mapstateToProps to get state from the store and map it to properties of the component which in this case is main.js
 const mapStateToProps = state => ({
-  authstate: state.auth.authitem        // the resean We used auth is that in rootReducer we use auth: authReducer/ what do we want from our authReducer is authuser state
+  authstate: state.auth.authitem,      // the resean We used auth is that in rootReducer we use auth: authReducer/ what do we want from our authReducer is authuser state
+  user: state.user.user
+
 })                                  // so we map authstate to auth property- we access to this state from the store through this.props.auth
 
 export default connect(mapStateToProps, { userAuth })(Adpost);
