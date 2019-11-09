@@ -24,7 +24,7 @@ console.log("split"+splitResults[0])
                   alt={result[0].category}
                   src={`uploads/${result[0].image}`}
                   className="img-fluid"
-                  style={{width:"250px", height:"250px", display: "inline-block"}}
+                  style={{width:"250px", height:"320px", display: "inline-block"}}
                 />
                 <Link style={{color:"black"}} to={"/detail/" + result[0].id}>
                   <p style={{marginBottom:"0"}}> {result[0].title}</p>
@@ -38,7 +38,7 @@ console.log("split"+splitResults[0])
                   alt={result[1].category}
                   src={`uploads/${result[1].image}`}
                   className="img-fluid"
-                  style={{width:"250px", height:"250px", display: "inline-block"}}
+                  style={{width:"250px", height:"320px", display: "inline-block"}}
                 />
                 <Link style={{color:"black"}} to={"/detail/" + result[1].id}>
                   <p style={{marginBottom:"0"}}> {result[1].title}</p>
