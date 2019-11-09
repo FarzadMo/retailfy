@@ -39,7 +39,14 @@ INSERT INTO Ad VALUES
 -- Bags
 
 (1,'ZARA RIGID MINI SHOPPER','Toronto','Mini shopper available in multiple colors: yellow and natural leather. Rigid exterior with contrasting color topstitching. Two shoulder straps, one of which is adjustable and removable. Lined interior with zip pocket. Magnetic closure.',"bag1.jpg",39.90,'bags','zara.ca','2019-09-14 14:32:51','2019-09-14 14:32:51',1),
-(2,'ZARA MINI CANVAS CROSSBODY ROCKER BAG','Toronto','Mini crossbody bag in a combination of colors. Canvas exterior in a combination of materials. Studs and metal trim detail at front. Chain shoulder strap in a combination of materials. Lined interior. Metal closure.',null,49.90,'bags','zara.ca','2019-09-14 14:32:51','2019-09-14 14:32:51',1);
+(2,'ZARA MINI CANVAS CROSSBODY ROCKER BAG','Toronto','Mini crossbody bag in a combination of colors. Canvas exterior in a combination of materials. Studs and metal trim detail at front. Chain shoulder strap in a combination of materials. Lined interior. Metal closure.',"bag2.jpg",49.90,'bags','zara.ca','2019-09-14 14:32:51','2019-09-14 14:32:51',1);
+
+-- Coats
+
+--jackets
+
+--tshirts
+
 
 -- Accessories     
                                  
