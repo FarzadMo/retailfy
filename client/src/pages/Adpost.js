@@ -130,6 +130,11 @@ class Adpost extends Component {
           {isAuthenticated ? (<button onClick={this.handleLogOut}>Log Out</button>) : (
             <Link to="/register">Log In/ Sign Up</Link>
           )}
+
+
+
+
+
         </Nav>
         <Container fluid>
 
