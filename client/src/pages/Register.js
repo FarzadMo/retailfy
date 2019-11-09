@@ -85,6 +85,7 @@ class Register extends Component {
         password: this.state.SignInPassword
       })
         .then(res => {
+          console.log("userInfo"+JSON.stringify(res.data))
           this.setState({ authstate: true });
           console.log(this.state.authstate);
           this.props.userAuth(this.state.authstate);  //call userAuth action-Redux

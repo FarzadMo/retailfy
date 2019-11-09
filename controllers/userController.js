@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 
 // Defining methods for the userController
 module.exports = {
-  create: function(req, res) {
+  create: function (req, res) {
     let pwd;
     //checks if the password field was passed
     try {
@@ -24,7 +24,7 @@ module.exports = {
     }
 
     db.User.create(req.body)
-      .then(function(result) {
+      .then(function (result) {
         res.json(result);
       })
       .catch(err => {
@@ -36,7 +36,7 @@ module.exports = {
       });
   },
 
-  findOne: function(req, res) {
+  findOne: function (req, res) {
     try {
       //check if the required fields are empty
       if (req.body.email.trim() === "" || req.body.password.trim() === "") {
@@ -52,7 +52,7 @@ module.exports = {
         email: req.body.email
       }
     })
-      .then(function(user) {
+      .then(function (user) {
         if (user) {
           //compare the password sent with the hash stored in the database
           if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -62,9 +62,9 @@ module.exports = {
             req.session.UserName = user.firstname;
             req.session.UserImage = user.image;
 
-            console.log("userid"+ req.session.UserId)
-            console.log("loggedin"+ req.session.loggedin)
-            res.status(200).end("User has signed up successfully!");
+            console.log("userid" + req.session.UserId)
+            console.log("loggedin" + req.session.loggedin)
+            res.status(200).send({ userId: user.id, userName: user.firstname });
           } else {
             // Passwords don't match
             res.status(400).end("Incorrect Username and/or Password!");
@@ -82,7 +82,7 @@ module.exports = {
       });
   },
 
-  logOut: function(req, res) {
+  logOut: function (req, res) {
     req.session.destroy(err => {
       if (err) {
         console.log("Error destroying session:");
