@@ -29,7 +29,7 @@ class Detail extends Component {
           <Link to="/">Close</Link>
         </Nav>
 
-        <Container fluid>
+        <Container fluid >
           <Row>
             <Col size="md-6 sm-12">
               <h3> Title: {this.state.oneAd.title}</h3>
