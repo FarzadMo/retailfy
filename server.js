@@ -31,7 +31,7 @@ app.use(fileUpload());
 app.use(routes);
 
 function runServer() {
-  app.listen(PORT, function() {
+  app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
@@ -44,12 +44,12 @@ let syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
+if (process.env.NODE_ENV === "development") {
   syncOptions.force = true;
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
+db.sequelize.sync(syncOptions).then(function () {
   if (syncOptions.force) {
     //execute the schema changes and the seeds
     let schema = fs.readFileSync("./scripts/schema.sql", { encoding: "utf8" });

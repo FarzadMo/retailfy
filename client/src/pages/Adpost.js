@@ -120,7 +120,7 @@ class Adpost extends Component {
 
   render() {
     const isAuthenticated = this.props.authstate
-    console.log(this.props.authstate)
+    // console.log(this.props.authstate)
     return (
       <>
         {/* redirect to main page after submitting */}

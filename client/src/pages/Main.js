@@ -6,15 +6,26 @@ import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
 import Nav from "../components/Nav";
 
+
+
+
 //redux
 import { connect } from 'react-redux';
 import { userAuth } from '../actions/authAction';
-// import PropTypes from 'prop-types';
+
+//style
+
+var containerStyle = {
+  width: "100%",
+  height: "100%",
+  background: "green"
+}
 
 class Main extends Component {
   state = {
     search: "",
-    results: []
+    results: [],
+
   };
 
   componentDidMount() {
@@ -23,7 +34,7 @@ class Main extends Component {
 
   loadAds = () => {
     API.getAllAds()
-      .then(res => this.setState({ results: res }))
+      .then(res => this.setState({ results: res.data }))
       .catch(err => console.log(err));
   };
 
@@ -52,7 +63,7 @@ class Main extends Component {
   }
   render() {
 
-    const isAuthenticated= this.props.authstate
+    const isAuthenticated = this.props.authstate
     return (
       <>
         <Nav>
@@ -64,7 +75,8 @@ class Main extends Component {
           {/* <button onClick={this.handleLogOut}>Log Out</button> */}
           <Link to="/adpost">Post Ad</Link>
         </Nav>
-        <Container fluid>
+
+        <Container fluid style={containerStyle} >
           <Row>
             <Col size="sm-12">
               <SearchForm
@@ -75,12 +87,14 @@ class Main extends Component {
             </Col>
           </Row>
 
-          <Row>
-            {this.state.results.length ? (
+          <Row className="ml-5">
+            <div className="col-sm-12 ml-4" >
+              {/* {this.state.results.length ? ( */}
               <SearchResults results={this.state.results} />
-            ) : (
+              {/* ) : (
                 <h3>No Results to Display</h3>
-              )}
+              )} */}
+            </div>
           </Row>
         </Container>
       </>
