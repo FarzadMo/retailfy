@@ -27,7 +27,8 @@ INSERT INTO Ad VALUES
 (5,'ZARA COOLMAX® PLEATED PANTS','Toronto','These pants are made from fabric that can absorb and evaporate liquid better than normal fabrics. This means sweat dries faster, keeping you dry and fresh.',"Ad5.COOLMAX® PLEATED PANTS.jpg",79.90,'pants','zara.ca','2019-09-14 14:32:51','2019-09-14 14:32:51',1),
 (6,'ZARA OTTOMAN PANTS','Toronto','Ottoman pants with elastic waistband and front adjustable drawstring. Front pouch pocket and cuffed hems.',"Ad6.OTTOMAN PANTS.jpg",14.90,'pants','zara.ca','2019-09-14 14:32:51','2019-09-14 14:32:51',1),
 -- Jeans
-
+(7,'ZARA LOW VAMP HEELED SHOES','Toronto','Heeled shoes available in different colors: fuchsia and black. V-shaped opening at vamp. Square stiletto heels. Pointed toe. Tie ankle closure.',"jean1.jpg",49.90,'jeans','zara.ca','2019-09-14 14:32:51','2019-09-14 14:32:51',1),
+(8,'ZARA SUEDE SHOES WITH METALLIC HEEL','Toronto','Mustard colored leather heeled shoes. Suede upper. Thin metallic heel. Pointed toe',"jean2.jpg",25,'jeans','zara.ca','2019-09-14 14:32:51','2019-09-14 14:32:51',1),
 -- Skirt/Shorts
 
 
@@ -37,7 +38,7 @@ INSERT INTO Ad VALUES
 
 -- Bags
 
-(1,'ZARA RIGID MINI SHOPPER','Toronto','Mini shopper available in multiple colors: yellow and natural leather. Rigid exterior with contrasting color topstitching. Two shoulder straps, one of which is adjustable and removable. Lined interior with zip pocket. Magnetic closure.',null,39.90,'bags','zara.ca','2019-09-14 14:32:51','2019-09-14 14:32:51',1),
+(1,'ZARA RIGID MINI SHOPPER','Toronto','Mini shopper available in multiple colors: yellow and natural leather. Rigid exterior with contrasting color topstitching. Two shoulder straps, one of which is adjustable and removable. Lined interior with zip pocket. Magnetic closure.',"bag1.jpg",39.90,'bags','zara.ca','2019-09-14 14:32:51','2019-09-14 14:32:51',1),
 (2,'ZARA MINI CANVAS CROSSBODY ROCKER BAG','Toronto','Mini crossbody bag in a combination of colors. Canvas exterior in a combination of materials. Studs and metal trim detail at front. Chain shoulder strap in a combination of materials. Lined interior. Metal closure.',null,49.90,'bags','zara.ca','2019-09-14 14:32:51','2019-09-14 14:32:51',1);
 
 -- Accessories     
