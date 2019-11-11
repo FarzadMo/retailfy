@@ -10,11 +10,17 @@ export default {
   getAllAds: function () {
     return axios.get("/api/retailRoutes");
   },
-  //   // Deletes the book with the given id
-  //   deleteBook: function(id) {
-  //     return axios.delete("/api/books/" + id);
-  //   },
 
+  // Delete an ad with the given userId
+  deleteAd: function (id) {
+    return axios.delete("/api/retailRoutes/deletead/" + id);
+  },
+
+  //getting all ads of an user with userId
+
+  getSavedAdByOneUser: function (id) {
+    return axios.get("/api/retailRoutes/myad/" + id);
+  },
   //  Post or Saves a new Ad info in the database
   saveAd: function (adData) {
     return axios.post("/api/retailRoutes/adpost", adData);

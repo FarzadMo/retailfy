@@ -68,9 +68,20 @@ class Main extends Component {
       <>
         <Nav>
           <Link to="/">Retailfy</Link>
-          {isAuthenticated ? (<button onClick={this.handleLogOut}>Log Out</button>) : (
-            <Link to="/register">Log In/ Sign Up</Link>
-          )}
+          {isAuthenticated ? (
+            <div class="dropdown">
+              <button class="dropbtn">{this.props.user.userName.charAt(0)}</button>
+              <div class="dropdown-content">
+                <Link to={`/myads/:${this.props.user.userId}`}><p>My Ads</p></Link>
+                <p onClick={this.handleLogOut} >Log Out</p>
+
+              </div>
+            </div>
+
+          ) : (
+              <Link to="/register">Log In/ Sign Up</Link>
+            )}
+
           {/* <Link to="/register">Log In/ Sign Up</Link> */}
           {/* <button onClick={this.handleLogOut}>Log Out</button> */}
           <Link to="/adpost">Post Ad</Link>
@@ -109,7 +120,10 @@ class Main extends Component {
 // }
 // we need to get new state (auth) from the store- we use mapstateToProps to get state from the store and map it to properties of the component which in this case is main.js
 const mapStateToProps = state => ({
-  authstate: state.auth.authitem        // the resean We used auth is that in rootReducer we use auth: authReducer/ what do we want from our authReducer is authuser state
+  authstate: state.auth.authitem,       // the resean We used auth is that in rootReducer we use auth: authReducer/ what do we want from our authReducer is authuser state
+  user: state.user.user
 })                                  // so we map authstate to auth property- we access to this state from the store through this.props.auth
 
 export default connect(mapStateToProps, { userAuth })(Main);
+
+

@@ -10,4 +10,11 @@ router.route("/detail/:id").get(adController.findAdById);
 
 router.route("/adpost").post(adController.create);
 
+//route for getting a user's posted Ads
+router.route("/myad/:id").get(adController.findAdsByUserId);
+
+
+// /route for deleting an ad
+router.route("/deletead/:id").delete(adController.remove);
+
 module.exports = router;
