@@ -6,6 +6,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import Nav from "../components/Nav";
 import Fileupload from "../components/Fileupload";
+import "./style.css";
 
 // redux
 import { connect } from 'react-redux';
@@ -102,8 +103,8 @@ class Adpost extends Component {
         category: this.state.Category,
         contactEmail: this.state.Contact
       })
-        .then(res => console.log("this is" + res))
-        .catch(err => console.log(err));
+        .then(res => console.log(res))
+        .catch(err => console.log(err.responseText.data));
     }
     // reset form
     this.setState({ Title: "", Location: "", Description: "", image: "", Category: "", Price: "", Contact: "", file: "", filename: "" })
@@ -119,32 +120,29 @@ class Adpost extends Component {
 
 
   render() {
+
     const isAuthenticated = this.props.authstate
-    console.log("useId" + this.props.user)
-    const user1 = this.props.user
-    console.log(user1.userName)
-    // console.log(this.props.authstate)
+ 
     return (
       <>
         {/* redirect to main page after submitting */}
         {this.renderRedirect()}
         <Nav>
           <Link to="/">Retailfy</Link>
+          {/* if the user is loged in , show a dropdown menu with two options */}
           {isAuthenticated ? (
-            <select >{this.props.user.userName}
-              <option>My Ads</option>
-              <option onClick={this.handleLogOut}>Log out</option>
+            <div class="dropdown">
+              <button class="dropbtn">{this.props.user.userName.charAt(0)}</button>
+              <div class="dropdown-content">
+                <Link to={`/myads/:${this.props.user.userId}`}><p>My Ads</p></Link>
+                <p onClick={this.handleLogOut} >Log Out</p>
 
-            </select>
-
+              </div>
+            </div>
 
           ) : (
               <Link to="/register">Log In/ Sign Up</Link>
             )}
-
-
-
-
 
         </Nav>
         <Container fluid>

@@ -5,6 +5,7 @@ import Main from "./pages/Main";
 import Adpost from "./pages/Adpost";
 import Register from "./pages/Register";
 import Detail from "./pages/Detail";
+import Myads from "./pages/Myads";
 import NoMatch from "./pages/NoMatch";
 
 //redux
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/adpost" component={Adpost} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/detail/:id" component={Detail} />
+            <Route exact path="/myads/:id" component={Myads} />
             <Route component={NoMatch} />
           </Switch>
         </div>

@@ -26,7 +26,7 @@ class Detail extends Component {
     return (
       <>
         <Nav>
-          <Link to="/">Close</Link>
+          <Link to="/">X</Link>
         </Nav>
 
         <Container fluid >

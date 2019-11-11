@@ -14,7 +14,7 @@ module.exports = {
       .catch(err => res.status(500).json(err));
   },
   create: function (req, res) {
-    
+
     if (!req.session.loggedin) {
       res.status(400).end("You need to sign in to create an experience");
     } else {
@@ -52,7 +52,31 @@ module.exports = {
     }
   },
   findAdById: function (req, res) {
-    db.Ad.findByPk( parseInt(req.params.id))
+    db.Ad.findByPk(parseInt(req.params.id))
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(500).json(err));
+  },
+
+  remove: function (req, res) {
+    db.Ad.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (result) {
+      res.json(result);
+    }).catch(err => {
+      if (err.errors) {
+        res.status(400).end(err.errors[0].message);
+      }
+      else {
+        res.status(500).end(err.message);
+      }
+    });
+
+  },
+
+  findAdsByUserId: function (req, res) {
+    db.Ad.findAll({ where:{userId: req.params.id }})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(500).json(err));
   }
