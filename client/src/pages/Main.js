@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
-import Nav from "../components/Nav";
-
 
 
 
@@ -15,11 +12,11 @@ import { userAuth } from '../actions/authAction';
 
 //style
 
-var containerStyle = {
-  width: "100%",
-  height: "100%",
-  background: "green"
-}
+// var containerStyle = {
+//   width: "100%",
+//   height: "100%",
+//   background: "green"
+// }
 
 class Main extends Component {
   state = {
@@ -66,8 +63,9 @@ class Main extends Component {
     const isAuthenticated = this.props.authstate
     return (
       <>
-        <Nav>
-          <Link to="/">Retailfy</Link>
+      <div id="firstlook">
+        <nav >
+          <Link id="logo" to="/">Retailfy</Link>
           {isAuthenticated ? (
             <div class="dropdown">
               <button class="dropbtn">{this.props.user.userName.charAt(0)}</button>
@@ -79,35 +77,40 @@ class Main extends Component {
             </div>
 
           ) : (
-              <Link to="/register">Log In/ Sign Up</Link>
+              <Link id="login" to="/register">Log In/ Sign Up</Link>
             )}
 
           {/* <Link to="/register">Log In/ Sign Up</Link> */}
           {/* <button onClick={this.handleLogOut}>Log Out</button> */}
-          <Link to="/adpost">Post Ad</Link>
-        </Nav>
-
-        <Container fluid style={containerStyle} >
-          <Row>
-            <Col size="sm-12">
+          <Link id="postAd" to="/adpost">Post Ad</Link>
+        </nav>
+       
+        
+          <div id="searchform">
+            
               <SearchForm
                 handleFormSubmit={this.handleFormSubmit}
                 handleInputChange={this.handleInputChange}
                 search={this.state.search}
+               style={{diplay:"inline-block"}}
               />
-            </Col>
-          </Row>
-
-          <Row className="ml-5">
-            <div className="col-sm-12 ml-4" >
+               
+          </div>
+          <div id="backimage">
+              <img src={"./assets/images/back2.jpg"}/>
+              </div>
+       
+         </div>
+          <div id="results">
+            
               {/* {this.state.results.length ? ( */}
               <SearchResults results={this.state.results} />
               {/* ) : (
                 <h3>No Results to Display</h3>
               )} */}
-            </div>
-          </Row>
-        </Container>
+           
+          </div>
+        
       </>
     );
   }

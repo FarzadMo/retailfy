@@ -1,8 +1,9 @@
 import React from "react";
+import"./style.css"
 
 function Nav({ children }) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <nav className="navbar " id="nav">
       {children}
     </nav>
   );
