@@ -35,6 +35,7 @@
     text-decoration: none;
     display: block;
   }
+
   /* Change color of dropdown links on hover */
 .dropdown-content p:hover {background-color: #ddd;}
 
@@ -43,3 +44,60 @@
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+/* log in */
+
+#postAd{
+
+  
+  position: absolute;
+  right: 100px;
+  top: 40px;
+  color:black
+  
+  }
+#login{
+
+  position: absolute;
+  right: 200px;
+  top: 40px;
+  color:black
+}
+
+#logo{
+  position: absolute;
+  left: 100px;
+  top: 40px;
+  color:black
+}
+
+/* Main page  */
+
+
+
+#results{
+
+  margin-top: 85vh;
+}
+
+#firstlook{
+  height: 97vh;
+  opacity:0.5;
+  width:100%;
+  opacity: 0.95;
+  background-color: #ffd51f;}
+  /* background: linear-gradient(0deg,rgba(191, 255, 0, 0.25),rgba(255,0,150,0.3)); */
+
+
+#backimage{
+  float:right
+
+}
+
+#backimage img{
+  width: 300px;
+  position: absolute;
+  right: 7%;
+  top: 25%;
+}
+
