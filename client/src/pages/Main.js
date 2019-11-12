@@ -65,7 +65,7 @@ class Main extends Component {
       <>
       <div id="firstlook">
         <nav >
-          <Link id="logo" to="/">Retailfy</Link>
+          <Link  to="/"><img id="logo" src="./assets/images/logo.png"/></Link>
           {isAuthenticated ? (
             <div class="dropdown">
               <button class="dropbtn">{this.props.user.userName.charAt(0)}</button>

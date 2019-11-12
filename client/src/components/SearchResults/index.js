@@ -24,12 +24,13 @@ console.log("split"+splitResults[0])
                   alt={result[0].category}
                   src={`uploads/${result[0].image}`}
                   className="img-fluid"
-                  style={{width:"250px", height:"320px", display: "inline-block"}}
+                  id="image"
+                  style={{width:"250px", height:"340px", display: "inline-block"}}
                 />
                 <Link style={{color:"black"}} to={"/detail/" + result[0].id}>
-                  <p style={{marginBottom:"0"}}> {result[0].title}</p>
+                  <p style={{marginBottom:"0", fontSize: "12px",fontFamily: 'Open Sans',marginTop: "15px"}}> {result[0].title}</p>
                 </Link>
-                <p style={{marginBottom:"0"}}>{result[0].price} CAD</p>
+                <p style={{marginBottom:"0", fontSize: "12px",fontFamily: 'Open Sans'}}>{result[0].price} CAD</p>
                 {/* <p>Description: {result[0].description}</p> */}
         </div>
         <div style={{width:"50%", display: "inline-block"}}>
@@ -38,13 +39,13 @@ console.log("split"+splitResults[0])
                   alt={result[1].category}
                   src={`uploads/${result[1].image}`}
                   className="img-fluid"
-                  style={{width:"250px", height:"320px", display: "inline-block"}}
+                  style={{width:"250px", height:"340px", display: "inline-block"}}
                 />
                 <Link style={{color:"black"}} to={"/detail/" + result[1].id}>
-                  <p style={{marginBottom:"0"}}> {result[1].title}</p>
+                  <p style={{marginBottom:"0", fontSize: "12px",fontFamily: 'Open Sans',marginTop: "15px"}}> {result[1].title}</p>
                 </Link>
 
-                <p>{result[1].price} CAD</p>
+                <p style={{fontSize: "12px",fontFamily: 'Open Sans'}}>{result[1].price} CAD</p>
                 {/* <p>Description: {result[1].description}</p> */}
         </div>
         </div>
