@@ -23,7 +23,7 @@ class Myads extends Component {
     }
 
     loadSavedAd = (userid) => {
-        console.log("userId"+userid)
+        console.log("userId" + userid)
         API.getSavedAdByOneUser(userid).then(res => this.setState({ results: res.data })).catch(err => console.log(err))
     }
 
@@ -35,25 +35,24 @@ class Myads extends Component {
     render() {
         const isAuthenticated = this.props.authstate
         return (
-            <>
-            <Nav>
-          <Link to="/">Retailfy</Link>
-          {/* if the user is loged in , show a dropdown menu with two options */}
-          {isAuthenticated ? (
-            <div class="dropdown">
-              <button class="dropbtn">{this.props.user.userName.charAt(0)}</button>
-              <div class="dropdown-content">
-                <Link to={`/myads/:${this.props.user.userId}`}><p>My Ads</p></Link>
-                <p onClick={this.handleLogOut} >Log Out</p>
+            <div if="firstlookmyad">
+                <nav >
+                    <Link to="/"><img id="logo" src="/assets/images/logo.png" /></Link>
+                    {isAuthenticated ? (
+                        <div class="dropdown">
+                            <button class="dropbtn">{this.props.user.userName.charAt(0)}</button>
+                            <div class="dropdown-content">
+                                <Link to={`/myads/:${this.props.user.userId}`}><p>My Ads</p></Link>
+                                <p onClick={this.handleLogOut} >Log Out</p>
 
-              </div>
-            </div>
+                            </div>
+                        </div>
 
-          ) : (
-              <Link to="/register">Log In/ Sign Up</Link>
-            )}
+                    ) : (
+                            <Link id="login" to="/register">Log In/ Sign Up</Link>
+                        )}
 
-        </Nav>
+                </nav>
                 <Container>
                     <Row>
                         <Col size="sm-12">
@@ -70,7 +69,7 @@ class Myads extends Component {
                                                     <h3> Location: {result.location}</h3>
                                                     <h3> Price: {result.price}</h3>
                                                     <h3> Contact Info: {result.contactEmail}</h3>
-                                                    
+
 
 
                                                 </Col>
@@ -100,12 +99,11 @@ class Myads extends Component {
                                 : (
                                     <ListItem>Nothing Posted</ListItem>)}
 
-
                         </Col>
                     </Row>
                 </Container>
 
-            </>
+            </div>
         )
 
     }
@@ -116,8 +114,7 @@ class Myads extends Component {
 const mapStateToProps = state => ({
     authstate: state.auth.authitem,      // the resean We used auth is that in rootReducer we use auth: authReducer/ what do we want from our authReducer is authuser state
     user: state.user.user
-  
-  })                                  // so we map authstate to auth property- we access to this state from the store through this.props.auth
-  
-  export default connect(mapStateToProps, { userAuth })(Myads);
-  
+
+})                                  // so we map authstate to auth property- we access to this state from the store through this.props.auth
+
+export default connect(mapStateToProps, { userAuth })(Myads);
