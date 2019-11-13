@@ -1,3 +1,6 @@
-ul.search-results img {
-  margin: 0 auto;
+#img-fluid{
+
+  width:"250px";
+   height:"320px";
+    display: "inline-block";
 }

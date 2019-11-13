@@ -9,7 +9,9 @@ form#search button[type="submit"] {
   background-color: transparent;
   border-radius: 7px;
   left: 90%;
- border:0px;
+font-family:'open sans';
+ border: solid;
+ border-color: #7ec7e8;
   
 }
 
