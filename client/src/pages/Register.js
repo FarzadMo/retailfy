@@ -105,19 +105,20 @@ class Register extends Component {
 
   render() {
     return (
-      <>
+      <div id="firstlookregister">
         {/* redirect to main page after submitting */}
         {this.renderRedirect()}
-        <Nav>
-          <Link to="/">Retailfy</Link>
-        </Nav>
+        <nav >
+          <Link  to="/"><img id="logo" src="./assets/images/logo.png"/></Link>
 
-        <Container fluid>
+        </nav>
+
+        <Container>
 
           <Row>
             {/* Sign In Section */}
-            <Col size="md-6 sm-12">
-              <h4>Sign In</h4>
+            <Col size="md-5 sm-12">
+              <h4 className="mb-4">[Sign In]</h4>
               <form>
                 <Input
                   value={this.state.SignInEmail}
@@ -136,11 +137,14 @@ class Register extends Component {
                   onClick={this.handleFormSignIn}>Sign In</FormBtn>
               </form>
             </Col>
+            <Col size="md-2 sm-12">
+            </Col>
 
             {/* Sign Up Section */}
-            <Col size="md-6 sm-12">
+            <Col size="md-5 sm-12">
               <Row>
                 <Col size="sm-12">
+                <h4 className="mb-4">[Sign Up]</h4>
                   <Input
                     value={this.state.firstName}
                     name="firstName"
@@ -187,21 +191,12 @@ class Register extends Component {
             </Col>
           </Row>
         </Container>
-      </>
+      </div>
     );
   }
 }
 
-// Register.proptypes={
 
-// userAuth: PropTypes.func.isRequired,
-// // auth: React.PropTypes.bool.isRequired
-
-// }
-
-// const mapStateToProps = state => ({
-//   authstate: state.auth.authitem        // the resean We used auth is that in rootReducer we use auth: authReducer/ what do we want from our authReducer is authuser state
-// })
 
 //redux 
 export default connect(null, { userAuth, userInformation })(Register);

@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import Nav from "../components/Nav";
+// import Nav from "../components/Nav";
 import Fileupload from "../components/Fileupload";
 import "./style.css";
 
@@ -124,12 +124,11 @@ class Adpost extends Component {
     const isAuthenticated = this.props.authstate
  
     return (
-      <>
+      <div id="firstlookAd">
         {/* redirect to main page after submitting */}
         {this.renderRedirect()}
-        <Nav>
-          <Link to="/">Retailfy</Link>
-          {/* if the user is loged in , show a dropdown menu with two options */}
+        <nav >
+          <Link  to="/"><img id="logo" src="./assets/images/logo.png"/></Link>
           {isAuthenticated ? (
             <div class="dropdown">
               <button class="dropbtn">{this.props.user.userName.charAt(0)}</button>
@@ -141,15 +140,15 @@ class Adpost extends Component {
             </div>
 
           ) : (
-              <Link to="/register">Log In/ Sign Up</Link>
+              <Link id="login" to="/register">Log In/ Sign Up</Link>
             )}
 
-        </Nav>
-        <Container fluid>
+        </nav>
+        <Container>
 
           <form>
             <Row>
-              <Col size="md-6 sm-12">
+              <Col size="md-5 sm-12">
                 <Input
                   value={this.state.Title}
                   name="Title"
@@ -203,7 +202,7 @@ class Adpost extends Component {
                 />
               </Col>
 
-              <Col size="md-6 sm-12">
+              <Col size="md-5 sm-12">
                 <Row>
                   <Col size="sm-12">
                     <TextArea
@@ -228,7 +227,7 @@ class Adpost extends Component {
             </Row>
           </form>
         </Container>
-      </>
+      </div>
     );
   }
 }

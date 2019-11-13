@@ -84,8 +84,6 @@
 
 /* Main page  */
 
-
-
 #results{
 
   margin-top: 100px;
@@ -98,8 +96,7 @@
   width:100%;
   opacity: 0.95;
   background-color: #ffd51f;}
-  /* background: linear-gradient(0deg,rgba(191, 255, 0, 0.25),rgba(255,0,150,0.3)); */
-
+ 
 
 #backimage{
   float:right
@@ -113,3 +110,24 @@
   top: 25%;
 }
 
+/* Adpost page */
+
+#firstlookAd{
+  background-color: #ffd51f;
+}
+
+/* Register */
+
+#firstlookregister{
+
+  background-image: linear-gradient(to bottom, rgb(247, 231, 87) 0%,rgba(212, 65, 65, 0.45) 100%),url(/static/media/back3.5dd615f1.jpg);
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+/* myad page */
+#firstlookmyad{
+
+
+  background-color: #ffd51f;
+}
