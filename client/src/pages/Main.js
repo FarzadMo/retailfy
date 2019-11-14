@@ -10,13 +10,6 @@ import SearchResults from "../components/SearchResults";
 import { connect } from 'react-redux';
 import { userAuth } from '../actions/authAction';
 
-//style
-
-// var containerStyle = {
-//   width: "100%",
-//   height: "100%",
-//   background: "green"
-// }
 
 class Main extends Component {
   state = {
@@ -101,16 +94,12 @@ class Main extends Component {
               </div>
        
          </div>
-          <div id="results">
-            
-              {/* {this.state.results.length ? ( */}
-              <SearchResults results={this.state.results} />
-              {/* ) : (
-                <h3>No Results to Display</h3>
-              )} */}
-           
+          <div id="results" >
+            {console.log(this.state.results)}
+            {this.state.results.length ? (<SearchResults  results={this.state.results} />) :(<p id="nothingsaved">Nothing Posted For this category</p>) }
+              
+          
           </div>
-        
       </>
     );
   }

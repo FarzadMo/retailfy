@@ -26,6 +26,8 @@ class Register extends Component {
     SignUpEmail: "",
     SignUpPassword: "",
     registered: "",
+    emptyfield: "",
+    emptyfieldsignin:"",
 
     //page redirection
     redirect: false,
@@ -68,19 +70,23 @@ class Register extends Component {
         email: this.state.SignUpEmail,
         password: this.state.SignUpPassword
       })
-        .then(res => this.setState({ TheOneUser: res.data }))
-        .catch(err => console.log(err));
+        .then(res =>  this.setState({ emptyfield: "Registered successfully!" }))
+        .catch(err => this.setState({ emptyfield: err.response.data }));
     }
+    else {
+      this.setState({ emptyfield: "Please fill in all fields" })
+    }
+
     //reset form
     this.setState({ firstName: "", lastName: "", SignUpEmail: "", SignUpPassword: "" })
-    //registered
-    this.setState({ registered: "Registered successfully!" })
+ 
+   
   };
 
   //Sign In section/onSubmit event--> validate a user
   handleFormSignIn = event => {
     event.preventDefault();
-    console.log("signin" + this.state.SignInEmail)
+   
     if (this.state.SignInEmail && this.state.SignInPassword) {
       API.getOneUserByEmail({
         email: this.state.SignInEmail,
@@ -95,7 +101,10 @@ class Register extends Component {
           this.props.userInformation(this.state.userinfo);  //call  action-Redux
           this.setRedirect();
         })
-        .catch(err => console.log(err));
+        .catch(err => this.setState({emptyfieldsignin: err.response.data}));
+    }
+    else{
+      this.setState({ emptyfieldsignin: "Please fill in all fields" })
     }
     //  set the redirect state to true after saving the post into database
 
@@ -109,16 +118,20 @@ class Register extends Component {
         {/* redirect to main page after submitting */}
         {this.renderRedirect()}
         <nav >
-          <Link  to="/"><img id="logo" src="./assets/images/logo.png"/></Link>
+          <Link to="/"><img id="logo" src="./assets/images/logo.png" /></Link>
 
         </nav>
 
-        <Container>
+        <div className="container" style={{
+          paddingLeft: "1.5%",
+          paddingTop: "10%",
+          paddingBottom: "10%"
+        }}>
 
           <Row>
             {/* Sign In Section */}
             <Col size="md-5 sm-12">
-              <h4 className="mb-4">[Sign In]</h4>
+              <h4 className="mb-4" style={{ fontFamily: "open sans" }}>[Sign In]</h4>
               <form>
                 <Input
                   value={this.state.SignInEmail}
@@ -132,26 +145,28 @@ class Register extends Component {
                   onChange={this.handleInputChange}
                   placeholder="Password"
                 />
-
+                {/* show all the errors in the following div */}
+                <div  className="ml-3" style={{ color: "rgb(193, 10, 38)" ,fontFamily: "open sans" }}>{this.state.emptyfieldsignin}</div>
                 <FormBtn
                   onClick={this.handleFormSignIn}>Sign In</FormBtn>
               </form>
             </Col>
-            <Col size="md-2 sm-12">
+            <Col size="md-1 sm-12">
             </Col>
 
             {/* Sign Up Section */}
-            <Col size="md-5 sm-12">
+            <Col size="md-5 sm-12 ">
               <Row>
                 <Col size="sm-12">
-                <h4 className="mb-4">[Sign Up]</h4>
+                  <h4 className="mb-4" style={{ fontFamily: "open sans" }}>[Sign Up]</h4>
+                  <label style={{ fontFamily: "open sans" }} htmlFor="firstName">First name</label>
                   <Input
                     value={this.state.firstName}
                     name="firstName"
                     onChange={this.handleInputChange}
                     placeholder="First Name"
                   />
-
+                  <label style={{ fontFamily: "open sans" }} htmlFor="LastName">Last name</label>
                   <Input
                     value={this.state.lastName}
                     name="lastName"
@@ -163,13 +178,14 @@ class Register extends Component {
 
               <Row>
                 <Col size="sm-12">
+                  <label style={{ fontFamily: "open sans" }} htmlFor="SignUpEmail">Email</label>
                   <Input
                     value={this.state.SignUpEmail}
                     name="SignUpEmail"
                     onChange={this.handleInputChange}
                     placeholder="Email"
                   />
-
+                  <label style={{ fontFamily: "open sans" }} htmlFor="SignUpPassword">Password</label>
                   <Input
                     value={this.state.SignUpPassword}
                     name="SignUpPassword"
@@ -179,7 +195,9 @@ class Register extends Component {
                 </Col>
               </Row>
               <Row>
-                <p>{this.state.registered}</p>
+                {/* show all the errors in the following div */}
+                <div  className="ml-3" style={{ color: "rgb(193, 10, 38)" ,fontFamily: "open sans" }}>{this.state.emptyfield}</div>
+                
               </Row>
               <Row>
                 <Col size="sm-12">
@@ -190,7 +208,7 @@ class Register extends Component {
               </Row>
             </Col>
           </Row>
-        </Container>
+        </div>
       </div>
     );
   }

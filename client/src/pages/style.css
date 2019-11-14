@@ -86,7 +86,7 @@
 
 #results{
 
-  margin-top: 100px;
+  margin-top: 60px;
   margin-left: 170px;
 }
 
@@ -110,6 +110,15 @@
   top: 25%;
 }
 
+#nothingsaved{
+  background-color: #7ec7e8;
+  color: white;
+  width: 250px;
+  padding-left: 6px;
+  margin-left: 30%;
+  font-family: 'open sans';
+}
+
 /* Adpost page */
 
 #firstlookAd{
@@ -120,7 +129,7 @@
 
 #firstlookregister{
 
-  background-image: linear-gradient(to bottom, rgb(247, 231, 87) 0%,rgba(212, 65, 65, 0.45) 100%),url(/static/media/back3.5dd615f1.jpg);
+  background-image: linear-gradient(to bottom, rgb(247, 231, 87) 0%,rgba(212, 65, 65, 0.45) 100%),url(back3.jpg);
 background-repeat: no-repeat;
 background-size: cover;
 }
@@ -129,5 +138,12 @@ background-size: cover;
 #firstlookmyad{
 
 
-  background-color: #ffd51f;
+  background-color: #c10a26;
 }
+
+#myadcontainer{
+
+  padding-top: 13%;
+}
+
+

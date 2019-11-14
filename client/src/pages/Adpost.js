@@ -20,6 +20,7 @@ class Adpost extends Component {
     Price: 0,
     Category: "",
     Contact: "",
+    emptyfield:"",
     redirect: false,
     ////////////// image///////
     file: "",
@@ -84,30 +85,38 @@ class Adpost extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log(this.state.Title)
-    console.log(this.state.Location)
-    console.log(this.state.Description)
-    if (
-      this.state.Title &&
-      this.state.Location &&
-      this.state.Description &&
-      this.state.Price &&
-      this.state.Contact
-    ) {
-      API.saveAd({
-        title: this.state.Title,
-        location: this.state.Location,
-        description: this.state.Description,
-        image: this.state.filename,
-        price: this.state.Price,
-        category: this.state.Category,
-        contactEmail: this.state.Contact
-      })
-        .then(res => console.log(res))
-        .catch(err => console.log(err.responseText.data));
+    if(this.props.authstate) {
+      if (
+        this.state.Title &&
+        this.state.Location &&
+        this.state.Description &&
+        this.state.Price &&
+        this.state.Contact
+      ) {
+        API.saveAd({
+          title: this.state.Title,
+          location: this.state.Location,
+          description: this.state.Description,
+          image: this.state.filename,
+          price: this.state.Price,
+          category: this.state.Category,
+          contactEmail: this.state.Contact
+        })
+          .then(res => {this.setState({emptyfield:"Posted Successfully!"});
+// reset form
+this.setState({ Title: "", Location: "", Description: "", image: "", Category: "", Price: "", Contact: "", file: "", filename: "" })
+        })
+          .catch(err => this.setState({emptyfield: err.response.data}));
+      }
+      else {
+        this.setState({emptyfield: "Please fill in all fields"})
+      }
     }
-    // reset form
-    this.setState({ Title: "", Location: "", Description: "", image: "", Category: "", Price: "", Contact: "", file: "", filename: "" })
+    else{
+      this.setState({emptyfield: "Please sign in first"})
+    }
+    
+    
     //  set the redirect state to true after saving the post into database
     //  this.setRedirect();
   };
@@ -215,6 +224,8 @@ class Adpost extends Component {
                 </Row>
                 <Row>
                   <Col size="sm-12">
+                    {/* show all the errors in the following div */}
+                    <div style={{color:"rgb(193, 10, 38)"}}>{this.state.emptyfield}</div>
                     <FormBtn
                       // disabled={!(this.state.Title && this.state.Location && this.state.Description && this.state.image && this.state.Price && this.state.Contact
                       //   )}
