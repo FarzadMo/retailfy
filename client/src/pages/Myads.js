@@ -3,7 +3,6 @@ import API from "../utils/API";
 import { Container, Row, Col } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Link } from "react-router-dom";
-import Nav from "../components/Nav";
 import "./style.css";
 
 // redux
@@ -35,7 +34,7 @@ class Myads extends Component {
     render() {
         const isAuthenticated = this.props.authstate
         return (
-            <div if="firstlookmyad">
+            <div id="firstlookmyad">
                 <nav >
                     <Link to="/"><img id="logo" src="/assets/images/logo.png" /></Link>
                     {isAuthenticated ? (
@@ -53,9 +52,9 @@ class Myads extends Component {
                         )}
 
                 </nav>
-                <Container>
+                <div className="container" id="myadcontainer" >
                     <Row>
-                        <Col size="sm-12">
+                        <Col size="md-10 sm-12">
                             {this.state.results.length ? (
                                 <List>
                                     {this.state.results.map(result => (
@@ -64,31 +63,29 @@ class Myads extends Component {
                                             <Row>
 
                                                 <Col size="sm-8">
-                                                    <h3>{result.title}</h3>
-                                                    <h3> Category: {result.category}</h3>
-                                                    <h3> Location: {result.location}</h3>
-                                                    <h3> Price: {result.price}</h3>
-                                                    <h3> Contact Info: {result.contactEmail}</h3>
-
-
+                                                    <p style={{ color: "black", fontFamily: "open sans" }}> <strong>Title:</strong> {result.title}</p>
+                                                    <p style={{ color: "black", fontFamily: "open sans" }}> <strong>Category:</strong> {result.category}</p>
+                                                    <p style={{ color: "black", fontFamily: "open sans" }}> <strong>Location:</strong> {result.location}</p>
+                                                    <p style={{ color: "black", fontFamily: "open sans" }}> <strong>Price:</strong> {result.price}</p>
+                                                    <p style={{ color: "black", fontFamily: "open sans" }}> <strong>Contact Info:</strong> {result.contactEmail}</p>
 
                                                 </Col>
 
                                                 <Col size="sm-4">
-                                                    <button className="btn float-right ml-3" style={{ color: "black", backgroundColor: "#f4cd23" }} onClick={() => this.deleteBtn(result.id)}>Delete</button>
-                                                    {/* <button className="btn float-right" style={{ color: "black", backgroundColor: "#f4cd23" }}> <a style={{ color: "black" }} href={result.link}>View</a></button> */}
+                                                    <button className="btn float-right ml-3" style={{ color: "black", backgroundColor: "#ffd51f" }} onClick={() => this.deleteBtn(result.id)}>Delete</button>
+
 
                                                 </Col>
                                             </Row>
 
                                             <Row>
-                                                <Col size="sm-4">
+                                                <Col size="sm-4" style={{border:"solid"}}>
 
-                                                    <img alt={result.title} style={{ width: "100px", height: "150px", marginTop: "30px" }} src={`./../uploads/${result.image}`}></img>
+                                                    <img alt={result.title} style={{ width: "100%", height: "100%" }} src={`./../uploads/${result.image}`}></img>
                                                 </Col>
-                                                <Col size="sm-8">
-                                                    <p>{result.description}</p>
-                                                </Col>
+                                                <div className="col-sm-8" style={{border:"solid", borderColor: "#a8c9d7"}}>
+                                                    <p >{result.description}</p>
+                                                </div>
                                             </Row>
                                         </ListItem>
 
@@ -96,12 +93,12 @@ class Myads extends Component {
 
                                 </List>
                             )
-                                : (
-                                    <ListItem>Nothing Posted</ListItem>)}
+                                : (isAuthenticated? (<ListItem>Nothing Posted</ListItem>):(<ListItem>Please sign in first</ListItem>))}
+                                   
 
                         </Col>
                     </Row>
-                </Container>
+                </div>
 
             </div>
         )

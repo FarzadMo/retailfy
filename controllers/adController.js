@@ -27,10 +27,9 @@ module.exports = {
       db.Ad.create(req.body)
         .then(function (ad) {
           //if there is file sent
-          console.log("addddddddddd" + ad.image)
+         
           if (req.body.image !== "") {
-            console.log("ad" + ad.image)
-            console.log("aaaaaaaaaad" + req.body.image)
+           
             //check if the exists in the upload folder
             if (fs.existsSync(`./client/public/uploads/tmp/${req.body.image}`)) {
               //rename the file and move it to definitive folder

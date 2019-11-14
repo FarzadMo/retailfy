@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
         validate: {
           len: {
             args: [3, 50],
-            msg: "Any post must have at least 3 and max 50 characters"
+            msg: "Any post's title must have at least 3 and max 50 characters"
           }
         }
       },
@@ -47,7 +47,7 @@ module.exports = function (sequelize, DataTypes) {
 
       category: {
         type: DataTypes.STRING,
-        // defaultValue: "Shoes"
+      
       },
 
       contactEmail: {

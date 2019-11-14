@@ -6,14 +6,18 @@ import "./style.css";
 function SearchResults(props) {
    // split the original array into a collection of two item sets
    var splitResults=[];
+   var splitResults1=[];
    var propResult=props.results;
    propResult.forEach((item, index) => {
-  if (index % 2) {
-    splitResults.push([propResult[index - 1], propResult[index]]);
+  if (index % 2 & index>0) {
+    splitResults.unshift([propResult[index - 1], propResult[index]]);
+  }
+  else if (index=0){
+    splitResults1.unshift([propResult[0], [{category:"", image:"", title:"", price:"", id:""}]])
   }
 });
-console.log("split1"+props.results)
-console.log("split"+splitResults[0])
+console.log("split1"+JSON.stringify(propResult[0]))
+console.log("split"+JSON.stringify(splitResults[0]))
   return (
     <div>
       {splitResults.map(result => (
