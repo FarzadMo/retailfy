@@ -73,8 +73,7 @@ class Main extends Component {
               <Link id="login" to="/register">Log In/ Sign Up</Link>
             )}
 
-          {/* <Link to="/register">Log In/ Sign Up</Link> */}
-          {/* <button onClick={this.handleLogOut}>Log Out</button> */}
+
           <Link id="postAd" to="/adpost">Post Ad</Link>
         </nav>
        
@@ -95,7 +94,8 @@ class Main extends Component {
        
          </div>
           <div id="results" >
-            {console.log(this.state.results)}
+          
+          
             {this.state.results.length ? (<SearchResults  results={this.state.results} />) :(<p id="nothingsaved">Nothing Posted For this category</p>) }
               
           

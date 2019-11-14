@@ -119,6 +119,7 @@
   font-family: 'open sans';
 }
 
+
 /* Adpost page */
 
 #firstlookAd{
@@ -146,4 +147,14 @@ background-size: cover;
   padding-top: 13%;
 }
 
+
+/* detail page */
+
+#containerdetail{
+
+clear: both;
+padding-left: 3%;
+padding-top: 5%;
+padding-bottom: 10%;
+}
 

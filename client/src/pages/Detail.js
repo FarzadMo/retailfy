@@ -20,24 +20,28 @@ class Detail extends Component {
   };
 
   render() {
-    console.log(this.state.oneAd.id)
-    console.log(this.state.oneAd.image)
 
     return (
       <>
-        <Nav>
-          <Link to="/">X</Link>
-        </Nav>
+        <nav style={{
+          float: "right",
+          "margin-right": "20px",
+          "margin-top": "20px",
+          "font-size": "25px",
+          "color": "#6eb7d9"
+        }}>
+          <Link to="/" s>X</Link>
+        </nav>
 
-        <Container fluid >
+        <div className="container"  id="containerdetail" >
           <Row>
             <Col size="md-6 sm-12">
-              <h3> Title: {this.state.oneAd.title}</h3>
-              <h3> Category: {this.state.oneAd.category}</h3>
-              <h3> Location: {this.state.oneAd.location}</h3>
-              <h3> Price: {this.state.oneAd.price}</h3>
-              <h3> Contact Info: {this.state.oneAd.contactEmail}</h3>
-              <p> Description: {this.state.oneAd.description}</p>
+              <p> <strong>  Title: </strong>{this.state.oneAd.title}</p>
+              <p>  <strong> Category: </strong> {this.state.oneAd.category}</p>
+              <p>  <strong>  Location: </strong> {this.state.oneAd.location}</p>
+              <p>  <strong>  Price:  </strong>{this.state.oneAd.price}</p>
+              <p>  <strong> Contact Info:</strong> {this.state.oneAd.contactEmail}</p>
+              <p>  <strong> Description:</strong> {this.state.oneAd.description}</p>
             </Col>
             <Col size="md-6 sm-12">
               <div>
@@ -50,7 +54,7 @@ class Detail extends Component {
 
             </Col>
           </Row>
-        </Container>
+        </div>
       </>
     );
   }

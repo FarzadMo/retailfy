@@ -115,10 +115,7 @@ this.setState({ Title: "", Location: "", Description: "", image: "", Category: "
     else{
       this.setState({emptyfield: "Please sign in first"})
     }
-    
-    
-    //  set the redirect state to true after saving the post into database
-    //  this.setRedirect();
+ 
   };
 
   handleLogOut = () => {

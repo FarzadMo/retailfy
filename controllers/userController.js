@@ -62,8 +62,6 @@ module.exports = {
             req.session.UserName = user.firstname;
             req.session.UserImage = user.image;
 
-            console.log("userid" + req.session.UserId)
-            console.log("loggedin" + req.session.loggedin)
             res.status(200).send({ userId: user.id, userName: user.firstname });
           } else {
             // Passwords don't match
