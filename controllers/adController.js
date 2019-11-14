@@ -21,7 +21,7 @@ module.exports = {
       //set the user id from the session
 
       req.body.UserId = req.session.UserId;
-      console.log("req.body" + req.body.image)
+ 
       //store the new experience on the database
 
       db.Ad.create(req.body)

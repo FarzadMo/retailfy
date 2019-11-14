@@ -6,7 +6,7 @@ function SearchForm(props) {
     return (
         <form id="search">
             <div id="form-group">
-                {/* <label htmlFor="categories">Categories :</label> */}
+        
                 <input
                     value={props.search}
                     onChange={props.handleInputChange}

@@ -57,7 +57,6 @@ class Register extends Component {
   //Sign Up section/onSubmit event--> post a new user
   handleFormUserSubmit = event => {
     event.preventDefault();
-    console.log("password" + this.state.SignUpPassword)
     if (
       this.state.firstName &&
       this.state.lastName &&
@@ -93,10 +92,8 @@ class Register extends Component {
         password: this.state.SignInPassword
       })
         .then(res => {
-          console.log("userInfo" + JSON.stringify(res.data))
           this.setState({ authstate: true });
           this.setState({ userinfo: res.data });
-          console.log(this.state.authstate);
           this.props.userAuth(this.state.authstate);  //call userAuth action-Redux
           this.props.userInformation(this.state.userinfo);  //call  action-Redux
           this.setRedirect();
@@ -106,7 +103,7 @@ class Register extends Component {
     else{
       this.setState({ emptyfieldsignin: "Please fill in all fields" })
     }
-    //  set the redirect state to true after saving the post into database
+ 
 
   };
 

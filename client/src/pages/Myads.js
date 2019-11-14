@@ -22,13 +22,12 @@ class Myads extends Component {
     }
 
     loadSavedAd = (userid) => {
-        console.log("userId" + userid)
         API.getSavedAdByOneUser(userid).then(res => this.setState({ results: res.data })).catch(err => console.log(err))
     }
 
     deleteBtn = (id) => {
-        console.log(API.deleteAd(id))
-        API.deleteAd(id).then(res => this.loadSavedAd()).catch(err => console.log(err))
+
+        API.deleteAd(id).then(res => this.loadSavedAd(this.props.user.userId)).catch(err => console.log(err))
 
     }
     render() {
