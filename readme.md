@@ -13,10 +13,9 @@ Retailfy is a retail shop where people can buy or sell various items on it.
  
        * Used Express to manage the server and routes.
        * Used Node and MySQL to query and routed data in the app.
-       * Used React and Redux to geerate the frontend and manage the state across the frontend.
+       * Used React and Redux to generate the frontend and manage the state across the frontend.
        * Used Sequelize.js to talk to the database which provides easy access to MYSQL.
        * Used express-fileupload middleware to upload images.
-       * Used generate-password for generating random and unique passwords.
        * Used express-session to handle sessions in Node.js.
        * Used bcrypt npm package to hash passwords.
     
@@ -70,11 +69,21 @@ Retailfy is a retail shop where people can buy or sell various items on it.
       *  Create the main parts of the frontend using React.js.
       *  Handling the state for authentication using Redux.
 
+### Main page
+![image](https://user-images.githubusercontent.com/49765334/68970897-59304780-07b6-11ea-8586-146700118dc1.png)
 
-![image]()
-![image]()
-![image]()
-![image]()
+### Sign in and Sign up page
+![image](https://user-images.githubusercontent.com/49765334/68971004-8e3c9a00-07b6-11ea-8e1b-f91068952a4d.png)
+
+### Post ad page
+![image](https://user-images.githubusercontent.com/49765334/68971077-b9bf8480-07b6-11ea-8bfc-367da48c1468.png)
+
+### My ad page
+![image](https://user-images.githubusercontent.com/49765334/68971118-d3f96280-07b6-11ea-8c5f-afcaad67cb41.png)
+
+### Detail page
+
+![image](https://user-images.githubusercontent.com/49765334/68971211-07d48800-07b7-11ea-8559-c59a19701cfe.png)
 
 ### Contributors
    ##### S. Lotfi 
