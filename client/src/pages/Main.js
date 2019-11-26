@@ -57,8 +57,13 @@ class Main extends Component {
     return (
       <>
       <div id="firstlook">
+        <div id="backcolor-left"></div>
+        <div id="backcolor-right"></div>
+        <div id="back-text"><p>Online Market for buying or selling clothing</p></div>
+        <div id= "back-animation"><p>MEET THE NEW ADS</p></div>
         <nav >
-          <Link  to="/"><img id="logo" src="./assets/images/logo.png"/></Link>
+          {/* <Link  to="/"><img id="logo" src="./assets/images/logo.png"/></Link> */}
+          <Link  to="/"><p id="logo">RETAILFY</p></Link>
           {isAuthenticated ? (
             <div class="dropdown">
               <button class="dropbtn">{this.props.user.userName.charAt(0)}</button>
@@ -88,9 +93,9 @@ class Main extends Component {
               />
                
           </div>
-          <div id="backimage">
+          {/* <div id="backimage">
               <img src={"./assets/images/back2.jpg"}/>
-              </div>
+              </div> */}
        
          </div>
           <div id="results" >

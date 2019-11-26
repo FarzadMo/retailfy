@@ -6,6 +6,10 @@ let fs = require("fs");
 const db = require("./models");
 let session = require("express-session");
 const fileUpload = require("express-fileupload");
+const path = require('path');
+
+////////multer////////
+const multer=require('multer');
 
 const app = express();
 const PORT = process.env.PORT || 3044;
@@ -13,6 +17,7 @@ const PORT = process.env.PORT || 3044;
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
@@ -25,7 +30,40 @@ app.use(
   })
 );
 
-app.use(fileUpload());
+////////////multer/////////
+app.use('/uploads', express.static('uploads'));
+var storage=multer.diskStorage({
+  destination: function(req,res,cb){
+    cb(null, './uploads/');
+  },
+  filename:function(req,file,cb){
+    cb(null,Date.now()+file.originalname);
+  }
+});
+
+const fileFilter=(req, file, cb) =>{
+  if(file.mimetype === 'image/jpeg' || file.mimetype==='image/png'){
+    cb(null, true);
+  } else {
+    cb(null,false);
+  }
+}
+const upload=multer({
+  storage:storage,
+  limits:{
+    fileSize:1024*1024*5
+  },
+  fileFilter:fileFilter
+})
+
+/////////////////fileupload using express-fileupload/////////////
+// var _dirname = path.resolve();
+
+// app.use(fileUpload({
+//   limits: { fileSize: 50 * 1024 * 1024 },
+//   useTempFiles: true,
+//   tempFileDir: `${_dirname}/client/public/assets/uploads/tmp/`
+// }));
 
 // Routes
 app.use(routes);
@@ -45,7 +83,7 @@ let syncOptions = { force: false };
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
+  syncOptions.force = false;
 }
 
 // Starting the server, syncing our models ------------------------------------/

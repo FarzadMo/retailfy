@@ -18,7 +18,6 @@ class Register extends Component {
     // Sign In State
     SignInEmail: "",
     SignInPassword: "",
-    TheOneUser: [],
 
     //Sign Up State
     firstName: "",
@@ -115,7 +114,7 @@ class Register extends Component {
         {/* redirect to main page after submitting */}
         {this.renderRedirect()}
         <nav >
-          <Link to="/"><img id="logo" src="./assets/images/logo.png" /></Link>
+        <Link  to="/"><p id="logo">RETAILFY</p></Link>
 
         </nav>
 
@@ -128,7 +127,7 @@ class Register extends Component {
           <Row>
             {/* Sign In Section */}
             <Col size="md-5 sm-12">
-              <h4 className="mb-4" style={{ fontFamily: "open sans" }}>[Sign In]</h4>
+              <h4 className="mb-4" style={{ fontFamily: "open sans" }}>Sign In</h4>
               <form>
                 <Input
                   value={this.state.SignInEmail}
@@ -143,7 +142,7 @@ class Register extends Component {
                   placeholder="Password"
                 />
                 {/* show all the errors in the following div */}
-                <div  className="ml-3" style={{ color: "rgb(193, 10, 38)" ,fontFamily: "open sans" }}>{this.state.emptyfieldsignin}</div>
+                <div  className="ml-3" style={{ color: "#3D820A" ,fontFamily: "'Poppins', 'sans-serif'"}}>{this.state.emptyfieldsignin}</div>
                 <FormBtn
                   onClick={this.handleFormSignIn}>Sign In</FormBtn>
               </form>
@@ -155,15 +154,15 @@ class Register extends Component {
             <Col size="md-5 sm-12 ">
               <Row>
                 <Col size="sm-12">
-                  <h4 className="mb-4" style={{ fontFamily: "open sans" }}>[Sign Up]</h4>
-                  <label style={{ fontFamily: "open sans" }} htmlFor="firstName">First name</label>
+                  <h4 className="mb-4" style={{  fontFamily: "'Poppins', 'sans-serif'"}}>Sign Up</h4>
+                  <label style={{  fontFamily: "'Poppins', 'sans-serif'", fontSize:"14px"}} htmlFor="firstName">First name</label>
                   <Input
                     value={this.state.firstName}
                     name="firstName"
                     onChange={this.handleInputChange}
                     placeholder="First Name"
                   />
-                  <label style={{ fontFamily: "open sans" }} htmlFor="LastName">Last name</label>
+                  <label style={{  fontFamily: "'Poppins', 'sans-serif'",fontSize:"14px"}} htmlFor="LastName">Last name</label>
                   <Input
                     value={this.state.lastName}
                     name="lastName"
@@ -175,14 +174,14 @@ class Register extends Component {
 
               <Row>
                 <Col size="sm-12">
-                  <label style={{ fontFamily: "open sans" }} htmlFor="SignUpEmail">Email</label>
+                  <label style={{  fontFamily: "'Poppins', 'sans-serif'" ,fontSize:"14px" }} htmlFor="SignUpEmail">Email</label>
                   <Input
                     value={this.state.SignUpEmail}
                     name="SignUpEmail"
                     onChange={this.handleInputChange}
                     placeholder="Email"
                   />
-                  <label style={{ fontFamily: "open sans" }} htmlFor="SignUpPassword">Password</label>
+                  <label style={{ fontFamily: "'Poppins', 'sans-serif'",fontSize:"14px"}} htmlFor="SignUpPassword">Password</label>
                   <Input
                     value={this.state.SignUpPassword}
                     name="SignUpPassword"
@@ -193,7 +192,7 @@ class Register extends Component {
               </Row>
               <Row>
                 {/* show all the errors in the following div */}
-                <div  className="ml-3" style={{ color: "rgb(193, 10, 38)" ,fontFamily: "open sans" }}>{this.state.emptyfield}</div>
+                <div  className="ml-3" style={{ color: "#3D820A" ,fontFamily: "'Poppins', 'sans-serif'"}}>{this.state.emptyfield}</div>
                 
               </Row>
               <Row>

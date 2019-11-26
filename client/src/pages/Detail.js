@@ -33,7 +33,7 @@ class Detail extends Component {
           <Link to="/" s>X</Link>
         </nav>
 
-        <div className="container"  id="containerdetail" >
+        <div className="container" id="containerdetail" >
           <Row>
             <Col size="md-6 sm-12">
               <p> <strong>  Title: </strong>{this.state.oneAd.title}</p>
@@ -47,7 +47,7 @@ class Detail extends Component {
               <div>
                 <img
                   alt={this.state.oneAd.category}
-                  src={`./../uploads/${this.state.oneAd.image}`}
+                  src={`${this.state.oneAd.image}`}
                   className="img-fluid"
                 />
               </div>

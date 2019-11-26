@@ -25,6 +25,7 @@ class Adpost extends Component {
     ////////////// image///////
     file: "",
     filename: "",
+    filePath:"",
     uploadedFile: {}
 
   };
@@ -46,12 +47,17 @@ class Adpost extends Component {
     formData.append('file', this.state.file);
     try {
       const res = await API.uploadImage(formData);
+      console.log("result"+ res)
+      
 
+      /////////uploadfile with fileupload////// the res coming back from the server includes file name and file path
+      
+      /////// this.setState({ uploadedFile: { fileName: res.data.fileName, filePath: res.data.filePath } })
 
-      // the res coming back from the server includes file name and file path
-      this.setState({ uploadedFile: { fileName: res.data.fileName, filePath: res.data.filePath } })
-
-
+      this.setState({
+  filePath: URL.createObjectURL(this.state.file)
+})
+ this.setState({ uploadedFile: { fileName: this.state.filename, filePath: this.state.filePath } })
 
     }
     catch (err) {
@@ -97,7 +103,7 @@ class Adpost extends Component {
           title: this.state.Title,
           location: this.state.Location,
           description: this.state.Description,
-          image: this.state.filename,
+          image: this.state.filePath,
           price: this.state.Price,
           category: this.state.Category,
           contactEmail: this.state.Contact
@@ -134,7 +140,7 @@ this.setState({ Title: "", Location: "", Description: "", image: "", Category: "
         {/* redirect to main page after submitting */}
         {this.renderRedirect()}
         <nav >
-          <Link  to="/"><img id="logo" src="./assets/images/logo.png"/></Link>
+        <Link  to="/"><p id="logo">RETAILFY</p></Link>
           {isAuthenticated ? (
             <div class="dropdown">
               <button class="dropbtn">{this.props.user.userName.charAt(0)}</button>
@@ -160,6 +166,8 @@ this.setState({ Title: "", Location: "", Description: "", image: "", Category: "
                   name="Title"
                   onChange={this.handleInputChange}
                   placeholder="Title"
+                  style={{ 
+                    fontFamily: "'Poppins', 'sans-serif'"}}
                 />
                 <Input
                   value={this.state.Category}
@@ -167,8 +175,11 @@ this.setState({ Title: "", Location: "", Description: "", image: "", Category: "
                   onChange={this.handleInputChange}
                   placeholder="Category"
                   list="categories"
+                  style={{ 
+                    fontFamily: "'Poppins', 'sans-serif'"}}
                 />
-                <datalist id="categories">
+                <datalist id="categories" style={{ 
+   fontFamily: "'Poppins', 'sans-serif'"}}>
                   <option value="Coats" />
                   <option value="Jackets" />
                   <option value="Blazers" />
@@ -192,12 +203,16 @@ this.setState({ Title: "", Location: "", Description: "", image: "", Category: "
                   name="Location"
                   onChange={this.handleInputChange}
                   placeholder="Location"
+                  style={{ 
+                    fontFamily: "'Poppins', 'sans-serif'"}}
                 />
                 <Input
                   value={this.state.Contact}
                   name="Contact"
                   onChange={this.handleInputChange}
                   placeholder="Contact"
+                  style={{ 
+                    fontFamily: "'Poppins', 'sans-serif'"}}
 
                 />
                 <Input
@@ -205,6 +220,8 @@ this.setState({ Title: "", Location: "", Description: "", image: "", Category: "
                   name="Price"
                   onChange={this.handleInputChange}
                   placeholder="Price"
+                  style={{ 
+                    fontFamily: "'Poppins', 'sans-serif'"}}
                 />
               </Col>
 
@@ -216,17 +233,19 @@ this.setState({ Title: "", Location: "", Description: "", image: "", Category: "
                       name="Description"
                       onChange={this.handleInputChange}
                       placeholder="Description"
+                      style={{ 
+                        fontFamily: "'Poppins', 'sans-serif'"}}
                     ></TextArea>
                   </Col>
                 </Row>
                 <Row>
                   <Col size="sm-12">
                     {/* show all the errors in the following div */}
-                    <div style={{color:"rgb(193, 10, 38)"}}>{this.state.emptyfield}</div>
+                    <div style={{color: "white"}}>{this.state.emptyfield}</div>
                     <FormBtn
                       // disabled={!(this.state.Title && this.state.Location && this.state.Description && this.state.image && this.state.Price && this.state.Contact
                       //   )}
-                      onClick={this.handleFormSubmit}>
+                      onClick={this.handleFormSubmit} >
                       Submit
                   </FormBtn>
                   </Col>
