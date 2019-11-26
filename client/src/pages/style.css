@@ -1,6 +1,17 @@
+nav #logo {
+  position: absolute;
+  left: 4%;
+  top: 7%;
+  color: white;
+  font-weight: normal;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  letter-spacing: .2rem;
+}
+
 .dropbtn {
   /* background-color: #c10a26; */
-  background-color: black;
+  background-color: #8FA66D;
   color: white;
   padding-left: 23px;
   padding-right: 23px;
@@ -39,7 +50,9 @@
     color: black;
     padding: 12px 16px;
     text-decoration: none;
-    display: block;
+    display: blocki
+    
+    ;
   }
 
   /* Change color of dropdown links on hover */
@@ -60,8 +73,8 @@
   right: 100px;
   top: 38px;
   color: black;
-  background-color: #7ec7e8;
-  border-radius: 6px;
+  background-color: #ffffff;
+  border-radius: 20px;
   padding: 5px;
   
   }
@@ -70,17 +83,18 @@
   position: absolute;
   right: 200px;
   top: 40px;
-  color:black
+  color: #fbf4f4;
+  font-family: 'Poppins', sans-serif;
 }
 
-#logo{
+/* #logo{
   position: absolute;
   left: 60px;
   top: 5px;
   color: black;
   width: 100px;
 
-}
+} */
 
 /* Main page  */
 
@@ -95,7 +109,8 @@
   opacity:0.5;
   width:100%;
   opacity: 0.95;
-  background-color: #ffd51f;}
+  /* background-color: #ffd51f; */
+position:relative}
  
 
 #backimage{
@@ -119,18 +134,67 @@
   font-family: 'open sans';
 }
 
+#backcolor-left{
+ z-index: -1;
+ background-color: #3D820A;
+ width: 70%;
+ height:100%;
+ position:absolute;
+ right:0;
 
+}
+
+#backcolor-right{
+ 
+ z-index: -1;
+ background-color: #5F6873;
+ width: 30%;
+ height:100%;
+ position:absolute;
+}
+
+#back-text{
+  position: absolute;
+  font-family: 'Poppins', sans-serif;
+  width: 35%;
+    left: 55%;
+    top: 35%;
+}
+
+#back-text p{
+  font-weight: bold;
+    color: white;
+    font-size: 3.2rem;
+}
+#back-animation p{
+  z-index: -1;
+    color: white;
+    position: absolute;
+    top: 40%;
+    font-size: 7rem;
+    opacity: 0.2;
+    width: 90%;
+    animation: animate 30s linear infinite;
+}
+@keyframes animate{
+  0%{
+    left:100%
+  }
+  100%{
+    left:-85%
+  }
+}
 /* Adpost page */
 
 #firstlookAd{
-  background-color: #ffd51f;
+  background-color: #476969;
 }
 
 /* Register */
 
 #firstlookregister{
 
-  background-image: linear-gradient(to bottom, rgb(247, 231, 87) 0%,rgba(212, 65, 65, 0.45) 100%),url(back3.jpg);
+  background-image: linear-gradient(to bottom, rgb(202, 184, 204,0.8) 0%,rgba(144, 158, 176, 0.45) 100%), url('bs3.jpg');
 background-repeat: no-repeat;
 background-size: cover;
 }
@@ -138,13 +202,15 @@ background-size: cover;
 /* myad page */
 #firstlookmyad{
 
-
-  background-color: #c10a26;
+  background-image: linear-gradient(to bottom, rgb(50, 67, 89,0.8) 0%,rgba(150, 80, 91, 0.45) 100%), url('bs4.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #myadcontainer{
-
   padding-top: 13%;
+  margin-left: 10%;
+  padding-bottom: 13%;
 }
 
 

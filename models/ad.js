@@ -47,7 +47,7 @@ module.exports = function (sequelize, DataTypes) {
 
       category: {
         type: DataTypes.STRING,
-      
+
       },
 
       contactEmail: {
@@ -64,29 +64,30 @@ module.exports = function (sequelize, DataTypes) {
     },
     {
       freezeTableName: true,
-      hooks: {
-        //trigger to update the file name after store on database
-        afterCreate: function (ad) {
-          if (ad.image) {
-            let fileName =
-              "Ad" +ad.id + "." + ad.image;
-            ad.image = fileName;
 
-            Ad.update(
-              {
-                image: fileName
-              },
-              {
-                where: {
-                  id: ad.id
-                }
-              }
-            ).then(() => {
-              console.log("Image renamed!");
-            });
-          }
-        }
-      }
+      // hooks: {
+      //   //trigger to update the file name after store on database
+      //   afterCreate: function (ad) {
+      //     if (ad.image) {
+      //       let fileName =
+      //         "Ad" +ad.id + "." + ad.image;
+      //       ad.image = fileName;
+
+      //       Ad.update(
+      //         {
+      //           image: fileName
+      //         },
+      //         {
+      //           where: {
+      //             id: ad.id
+      //           }
+      //         }
+      //       ).then(() => {
+      //         console.log("Image renamed!");
+      //       });
+      //     }
+      //   }
+      // }
     }
   );
 

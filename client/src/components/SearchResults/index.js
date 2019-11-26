@@ -26,7 +26,7 @@ function SearchResults(props) {
 
             <img
               alt={propResult[propResult.length - 1].category}
-              src={`uploads/${propResult[propResult.length - 1].image}`}
+              src={`${propResult[propResult.length - 1].image}`}
               className="img-fluid"
               style={{ width: "250px", height: "340px", display: "inline-block" }}
             />
@@ -45,7 +45,7 @@ function SearchResults(props) {
             {console.log(result[0].image)}
             <img
               alt={result[0].category}
-              src={`uploads/${result[0].image}`}
+              src={`${result[0].image}`}
               className="img-fluid"
               id="image"
               style={{ width: "250px", height: "340px", display: "inline-block" }}
@@ -60,7 +60,7 @@ function SearchResults(props) {
             {console.log(result[1].image)}
             <img
               alt={result[1].category}
-              src={`uploads/${result[1].image}`}
+              src={`${result[1].image}`}
               className="img-fluid"
               style={{ width: "250px", height: "340px", display: "inline-block" }}
             />

@@ -28,17 +28,17 @@ module.exports = {
         .then(function (ad) {
           //if there is file sent
          
-          if (req.body.image !== "") {
+          // if (req.body.image !== "") {
            
-            //check if the exists in the upload folder
-            if (fs.existsSync(`./client/public/uploads/tmp/${req.body.image}`)) {
-              //rename the file and move it to definitive folder
-              fs.renameSync(
-                `./client/public/uploads/tmp/${req.body.image}`,
-                `./client/public/uploads/${ad.image}`
-              );
-            }
-          }
+          //   //check if the exists in the upload folder
+          //   if (fs.existsSync(`./client/public/uploads/tmp/${req.body.image}`)) {
+          //     //rename the file and move it to definitive folder
+          //     fs.renameSync(
+          //       `./client/public/uploads/tmp/${req.body.image}`,
+          //       `./client/public/uploads/${ad.image}`
+          //     );
+          //   }
+          // }
           res.json(ad);
         })
         .catch(err => {

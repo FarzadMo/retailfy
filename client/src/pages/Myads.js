@@ -35,7 +35,7 @@ class Myads extends Component {
         return (
             <div id="firstlookmyad">
                 <nav >
-                    <Link to="/"><img id="logo" src="/assets/images/logo.png" /></Link>
+                <Link  to="/"><p id="logo">RETAILFY</p></Link>
                     {isAuthenticated ? (
                         <div class="dropdown">
                             <button class="dropbtn">{this.props.user.userName.charAt(0)}</button>
@@ -49,9 +49,10 @@ class Myads extends Component {
                     ) : (
                             <Link id="login" to="/register">Log In/ Sign Up</Link>
                         )}
+                        <Link id="postAd" to="/adpost">Post Ad</Link>
 
                 </nav>
-                <div className="container" id="myadcontainer" >
+                <div id="myadcontainer" >
                     <Row>
                         <Col size="md-10 sm-12">
                             {this.state.results.length ? (
@@ -62,16 +63,16 @@ class Myads extends Component {
                                             <Row>
 
                                                 <Col size="sm-8">
-                                                    <p style={{ color: "black", fontFamily: "open sans" }}> <strong>Title:</strong> {result.title}</p>
-                                                    <p style={{ color: "black", fontFamily: "open sans" }}> <strong>Category:</strong> {result.category}</p>
-                                                    <p style={{ color: "black", fontFamily: "open sans" }}> <strong>Location:</strong> {result.location}</p>
-                                                    <p style={{ color: "black", fontFamily: "open sans" }}> <strong>Price:</strong> {result.price}</p>
-                                                    <p style={{ color: "black", fontFamily: "open sans" }}> <strong>Contact Info:</strong> {result.contactEmail}</p>
+                                                    <p style={{ color: "black", fontFamily: "'Poppins', 'sans-serif'",fontSize: "14px" }}> <strong>Title:</strong> {result.title}</p>
+                                                    <p style={{ color: "black", fontFamily: "'Poppins', 'sans-serif'",fontSize: "14px" }}> <strong>Category:</strong> {result.category}</p>
+                                                    <p style={{ color: "black", fontFamily: "'Poppins', 'sans-serif'",fontSize: "14px"}}> <strong>Location:</strong> {result.location}</p>
+                                                    <p style={{ color: "black", fontFamily: "'Poppins', 'sans-serif'",fontSize: "14px" }}> <strong>Price:</strong> {result.price}</p>
+                                                    <p style={{ color: "black", fontFamily: "'Poppins', 'sans-serif'",fontSize: "14px" }}> <strong>Contact Info:</strong> {result.contactEmail}</p>
 
                                                 </Col>
 
                                                 <Col size="sm-4">
-                                                    <button className="btn float-right ml-3" style={{ color: "black", backgroundColor: "#ffd51f" }} onClick={() => this.deleteBtn(result.id)}>Delete</button>
+                                                    <button className="btn float-right ml-3" style={{ color: "white", backgroundColor: "#8C3E3E", borderRadius:"20px",fontFamily: "'Poppins', 'sans-serif'"}} onClick={() => this.deleteBtn(result.id)}>Delete</button>
 
 
                                                 </Col>
@@ -80,10 +81,10 @@ class Myads extends Component {
                                             <Row>
                                                 <Col size="sm-4" style={{border:"solid"}}>
 
-                                                    <img alt={result.title} style={{ width: "100%", height: "100%" }} src={`./../uploads/${result.image}`}></img>
+                                                    <img alt={result.title} style={{ width: "50%", height: "100%" }} src={`${result.image}`}></img>
                                                 </Col>
-                                                <div className="col-sm-8" style={{border:"solid", borderColor: "#a8c9d7"}}>
-                                                    <p >{result.description}</p>
+                                                <div className="col-sm-8" >
+                                                    <p style={{fontFamily: "'Poppins', 'sans-serif'", fontSize: "14px"}}>{result.description}</p>
                                                 </div>
                                             </Row>
                                         </ListItem>
