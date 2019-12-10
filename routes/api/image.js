@@ -1,41 +1,40 @@
 
 const router = require("express").Router();
-const path = require('path');
-const multer=require('multer');
-var storage=multer.diskStorage({
-    destination: function(req,res,cb){
-      cb(null, './uploads/tmp/');
-    },
-    filename:function(req,file,cb){
-      cb(null,Date.now()+file.originalname);
-    }
-  });
-  
-  const fileFilter=(req, file, cb) =>{
-    if(file.mimetype === 'image/jpeg' || file.mimetype==='image/png'){
-      cb(null, true);
-    } else {
-      cb(null,false);
-    }
+// const path = require('path');              /// we need path if we use express-fileupload for uploading an image
+const multer = require('multer');
+
+
+var storage = multer.diskStorage({
+  destination: function (req, res, cb) {
+    cb(null, './uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname);
   }
-  const upload=multer({
-    storage:storage,
-    limits:{
-      fileSize:1024*1024*5
-    },
-    fileFilter:fileFilter
-  })
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+}
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+})
 /////////multer//////////
 
-router.route('/').post(upload.single('file'), (req,res,next) =>{
-    console.log(req.body);
-    // const newImage=new Image({
-    //     imageName:req.body.imageName,
-        const imageData=req.file.path;
-        res.json({ fileName: req.file.originalname, filePath: imageData })
-    })
+router.route('/').post(upload.single('file'), (req, res, next) => {
+   const imageData = req.file.path;
+  res.json({ fileName: req.file.originalname, filePath: imageData })
+})
 
-       
+
 ////////////express-fileupload////////
 
 
@@ -57,7 +56,7 @@ router.route('/').post(upload.single('file'), (req,res,next) =>{
 //     })
 
 // });
-
+/////////////////////////////////////////////////////////////////////////////
 
 
 module.exports = router;

@@ -64,7 +64,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     {
       freezeTableName: true,
-
+/////////// use hooks with express-fileupoad//////////////////
       // hooks: {
       //   //trigger to update the file name after store on database
       //   afterCreate: function (ad) {
@@ -88,6 +88,7 @@ module.exports = function (sequelize, DataTypes) {
       //     }
       //   }
       // }
+      //////////////////////////////////////////
     }
   );
 

@@ -1,7 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom"
 import "./style.css";
+import Radium from "radium";
 
+///////////////media query/////////
+
+var firstcolstyle={
+  width: "250px",
+   height: "340px",
+    display: "inline-block",
+
+    "@media(max-width:1125px)":{
+      width:"220px",
+      height:"280px",
+      marginLeft:"20px"
+    },
+"@media(max-width:640px)":{
+  width:"180px",
+  height:"240px",
+  marginLeft:"20px"
+}
+}
+var secondcolstyle={
+  width: "250px",
+   height: "340px",
+    display: "inline-block",
+    "@media(max-width:1125px)":{
+      width:"220px",
+      height:"280px",
+      marginLeft:"10px"
+    },
+"@media(max-width:640px)":{
+  width:"180px",
+  height:"240px",
+  marginLeft:"10px"
+}
+}
+////////////////////////
 
 function SearchResults(props) {
   // split the original array into a collection of two item sets
@@ -28,7 +63,7 @@ function SearchResults(props) {
               alt={propResult[propResult.length - 1].category}
               src={`${propResult[propResult.length - 1].image}`}
               className="img-fluid"
-              style={{ width: "250px", height: "340px", display: "inline-block" }}
+              style={firstcolstyle}
             />
             <Link style={{ color: "black" }} to={"/detail/" + propResult[propResult.length - 1].id}>
               <p style={{ marginBottom: "0", fontSize: "12px", fontFamily: 'Open Sans', marginTop: "15px" }}> {propResult[propResult.length - 1].title}</p>
@@ -48,7 +83,7 @@ function SearchResults(props) {
               src={`${result[0].image}`}
               className="img-fluid"
               id="image"
-              style={{ width: "250px", height: "340px", display: "inline-block" }}
+              style={firstcolstyle}
             />
             <Link style={{ color: "black" }} to={"/detail/" + result[0].id}>
               <p style={{ marginBottom: "0", fontSize: "12px", fontFamily: 'Open Sans', marginTop: "15px" }}> {result[0].title}</p>
@@ -62,7 +97,7 @@ function SearchResults(props) {
               alt={result[1].category}
               src={`${result[1].image}`}
               className="img-fluid"
-              style={{ width: "250px", height: "340px", display: "inline-block" }}
+              style={secondcolstyle}
             />
             <Link style={{ color: "black" }} to={"/detail/" + result[1].id}>
               <p style={{ marginBottom: "0", fontSize: "12px", fontFamily: 'Open Sans', marginTop: "15px" }}> {result[1].title}</p>
@@ -80,4 +115,4 @@ function SearchResults(props) {
   );
 }
 
-export default SearchResults;
+export default Radium(SearchResults);

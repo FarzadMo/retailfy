@@ -26,6 +26,8 @@ module.exports = {
 
       db.Ad.create(req.body)
         .then(function (ad) {
+
+          //////////////// this part would be used if we use express-fileupload for uplaoding an image/////////
           //if there is file sent
          
           // if (req.body.image !== "") {
@@ -39,6 +41,7 @@ module.exports = {
           //     );
           //   }
           // }
+          /////////////////////////////////////////////////////////////////
           res.json(ad);
         })
         .catch(err => {
@@ -63,6 +66,36 @@ module.exports = {
       }
     }).then(function (result) {
       res.json(result);
+    }).catch(err => {
+      if (err.errors) {
+        res.status(400).end(err.errors[0].message);
+      }
+      else {
+        res.status(500).end(err.message);
+      }
+    });
+
+  },
+  edit: function (req, res) {
+    // update a row in database using update in sequelize- use where after new data
+    // db.model.update(newdata, {where:{id:req.param.id}})
+    db.Ad.update(
+
+      {
+        title: req.body.title,
+        location: req.body.location,
+        description: req.body.description,
+        image: req.body.image,
+        price: req.body.price,
+        category: req.body.category,
+        contactEmail: req.body.contactEmail
+      },
+      { where: { id: req.params.id } }
+
+
+    ).then(function (result) {
+
+      console.log("results" + result)
     }).catch(err => {
       if (err.errors) {
         res.status(400).end(err.errors[0].message);

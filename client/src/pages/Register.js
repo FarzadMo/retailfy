@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
+import { Col, Row} from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
-import Nav from "../components/Nav";
+import Radium from "radium";
 
 // Redux
 
@@ -13,6 +13,30 @@ import { connect } from 'react-redux';
 import { userAuth } from '../actions/authAction';
 import { userInformation } from '../actions/userAction';
 
+/////////////media query///////////
+var logostyle ={
+  '@media (max-width:860px)':{
+    fontSize: "1.5rem",
+    position: "absolute",
+    left: "3%",
+    top: "4%",
+    marginBottom:"30%"
+  
+  }
+}
+var containerstyle ={
+  paddingLeft: "1.5%",
+  paddingTop: "10%",
+  paddingBottom: "10%",
+
+  '@media (max-width:640px)':{
+    paddingTop: "25%",
+
+  
+  }
+}
+
+////////////////////
 class Register extends Component {
   state = {
     // Sign In State
@@ -114,15 +138,11 @@ class Register extends Component {
         {/* redirect to main page after submitting */}
         {this.renderRedirect()}
         <nav >
-        <Link  to="/"><p id="logo">RETAILFY</p></Link>
+        <Link  to="/"><p id="logo" style={logostyle}>RETAILFY</p></Link>
 
         </nav>
 
-        <div className="container" style={{
-          paddingLeft: "1.5%",
-          paddingTop: "10%",
-          paddingBottom: "10%"
-        }}>
+        <div className="container" style={containerstyle}>
 
           <Row>
             {/* Sign In Section */}
@@ -213,4 +233,4 @@ class Register extends Component {
 
 
 //redux 
-export default connect(null, { userAuth, userInformation })(Register);
+export default connect(null, { userAuth, userInformation })(Radium(Register));

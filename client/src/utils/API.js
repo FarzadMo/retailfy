@@ -15,6 +15,10 @@ export default {
   deleteAd: function (id) {
     return axios.delete("/api/retailRoutes/deletead/" + id);
   },
+  // Edit an ad with the given userId
+  editAd: function (id, data) {
+    return axios.put("/api/retailRoutes/editad/" + id, data);
+  },
 
   //getting all ads of an user with userId
 

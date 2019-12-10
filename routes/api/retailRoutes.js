@@ -17,4 +17,7 @@ router.route("/myad/:id").get(adController.findAdsByUserId);
 // /route for deleting an ad
 router.route("/deletead/:id").delete(adController.remove);
 
+// /route for editing an ad
+router.route("/editad/:id").put(adController.edit);
+
 module.exports = router;

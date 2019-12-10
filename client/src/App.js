@@ -6,6 +6,8 @@ import Adpost from "./pages/Adpost";
 import Register from "./pages/Register";
 import Detail from "./pages/Detail";
 import Myads from "./pages/Myads";
+import Editads from "./pages/Editads";
+import Radium, {StyleRoot} from "radium";
 
 
 //redux
@@ -16,6 +18,7 @@ function App() {
 
   return (
     // provider is a glue from react and redux, it takes the store which holds the state tree of the whole application
+    <StyleRoot>
     <Provider store={store}>
       <Router>
         <div>
@@ -25,10 +28,12 @@ function App() {
             <Route exact path="/register" component={Register} />
             <Route exact path="/detail/:id" component={Detail} />
             <Route exact path="/myads/:id" component={Myads} />
+            <Route exact path="/editads/:id" component={Editads} />
           </Switch>
         </div>
       </Router>
     </Provider>
+    </StyleRoot>
   );
 }
 
