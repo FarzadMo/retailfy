@@ -2,22 +2,23 @@
 
 Retailfy is a retail shop where people can buy or sell various items on it.
 
-[View website]()
+[View website](https://retailfy.herokuapp.com/)
 
 ## Overview
 
  *  Users are able to post (sell) as well as search for their desired itesm, by creating an account first and then sign in.  
 
 
- *  The app is a full-stack web application created with MySQL, Node, Express.js, Sequelize.js, React and Redux. 
+ *  The app is a full-stack web application created with MySQL, Node, Express.js, Sequelize.js, React and React-Redux. 
  
        * Used Express to manage the server and routes.
        * Used Node and MySQL to query and routed data in the app.
        * Used React and Redux to generate the frontend and manage the state across the frontend.
        * Used Sequelize.js to talk to the database which provides easy access to MYSQL.
-       * Used express-fileupload middleware to upload images.
+       * Used Multer middleware to upload images.
        * Used express-session to handle sessions in Node.js.
        * Used bcrypt npm package to hash passwords.
+       * Used Radium to make the website responsive.
     
 ## Instructions
 ### App Setup
@@ -29,7 +30,7 @@ Retailfy is a retail shop where people can buy or sell various items on it.
 5.	Install MySQL npm package: npm install mysql2.
 6.	Require the following npm packages inside of the server.js file:
       *  Express
-      *  Express-fileupload – used to upload images.
+      *  Multer – used to upload images.
       *  Express-session - used to handle sessions in Node.js.
       *  Fs - used to work with file system.
       *  bcrypt - used to hash passwords
@@ -70,20 +71,21 @@ Retailfy is a retail shop where people can buy or sell various items on it.
       *  Handling the state for authentication using Redux.
 
 ### Main page
-![image](https://user-images.githubusercontent.com/49765334/68970897-59304780-07b6-11ea-8586-146700118dc1.png)
+![image](https://user-images.githubusercontent.com/49765334/70502854-ecc41200-1aef-11ea-8a64-6f05438f20a8.png)
 
 ### Sign in and Sign up page
-![image](https://user-images.githubusercontent.com/49765334/68971004-8e3c9a00-07b6-11ea-8e1b-f91068952a4d.png)
+![image](https://user-images.githubusercontent.com/49765334/70502888-082f1d00-1af0-11ea-89d7-392184739290.png)
 
 ### Post ad page
-![image](https://user-images.githubusercontent.com/49765334/68971077-b9bf8480-07b6-11ea-8bfc-367da48c1468.png)
+![image](https://user-images.githubusercontent.com/49765334/70503034-72e05880-1af0-11ea-9c0b-62c947367cc0.png)
 
 ### My ad page
-![image](https://user-images.githubusercontent.com/49765334/68971118-d3f96280-07b6-11ea-8c5f-afcaad67cb41.png)
+![image](https://user-images.githubusercontent.com/49765334/70502929-2e54bd00-1af0-11ea-9db4-3470e0afda51.png)
+
 
 ### Detail page
 
-![image](https://user-images.githubusercontent.com/49765334/68971211-07d48800-07b7-11ea-8559-c59a19701cfe.png)
+![image](https://user-images.githubusercontent.com/49765334/70502989-547a5d00-1af0-11ea-974c-a9ef5b4a516e.png)
 
 ### Contributors
    ##### S. Lotfi 

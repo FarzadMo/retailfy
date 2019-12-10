@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import Nav from "../components/Nav";
 
 class Detail extends Component {
   state = {
@@ -20,9 +19,13 @@ class Detail extends Component {
   };
 
   render() {
+ const urle=window.location.href;
+ const mainpageurl = urle.split("detail")[0];
+ const imageurl=mainpageurl+this.state.oneAd.image;
 
     return (
       <>
+      {console.log(this.state.oneAd.image)}
         <nav style={{
           float: "right",
           "margin-right": "20px",
@@ -33,7 +36,7 @@ class Detail extends Component {
           <Link to="/" s>X</Link>
         </nav>
 
-        <div className="container" id="containerdetail" >
+        <div className="container" id="containerdetail"  >
           <Row>
             <Col size="md-6 sm-12">
               <p> <strong>  Title: </strong>{this.state.oneAd.title}</p>
@@ -47,7 +50,7 @@ class Detail extends Component {
               <div>
                 <img
                   alt={this.state.oneAd.category}
-                  src={`${this.state.oneAd.image}`}
+                  src={`${imageurl}`}
                   className="img-fluid"
                 />
               </div>

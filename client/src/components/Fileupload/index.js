@@ -12,7 +12,7 @@ const FileUpload = (props) => {
                     <input type="file" className='custom-file-input' id='customFile' onChange={props.onChange} />
                     <label className='custom-file-label' style={{ 
    fontFamily: "'Poppins', 'sans-serif'"}} htmlFor='customFile'>
-                        {props.filename}
+                        {props.uploadedFile.fileName}
                     </label>
                 </div>
                 <input type="submit" value="Upload" className="btn btn-block mt-4" style={{ backgroundColor: "#5ED228",

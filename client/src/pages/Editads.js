@@ -2,124 +2,16 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Col, Row } from "../components/Grid";
+import { Col, Row, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import Fileupload from "../components/Fileupload";
 import "./style.css";
-import Radium from "radium";
-
 
 // redux
 import { connect } from 'react-redux';
 import { userAuth } from '../actions/authAction';
 
-////////////media query//////////
-var logostyle={
-'@media (max-width:640px)':{
-  position:"absolute",
-  left:"4%",
-  fontSize:"2rem"
-}
-}
-var containerstyle={
-
-    paddingLeft: "10%",
-    paddingTop: "15%",
-    paddingBottom: "10%",
-    '@media (max-width:960px)':{
-   
-      paddingLeft:"5%",
-      paddingTop:"20%",
-      
-    },
-
-  '@media (max-width:640px)':{
-   
-    paddingLeft:"5%",
-    paddingTop:"30%",
-    
-  }
- 
-  }
-  var navstyle={
-    width:"100%"
-   }
-  var navleftstyle={
-    position:"absolute",
-    width: "40%",
-    top:0,
-    right:"100px",
-    height:"100%",
-    
-    '@media (max-width:1015px)': {
-      position:"absolute",
-    right:"50px"
-    },
-    '@media (max-width:640px)': {
-      position:"absolute",
-    width: "50%",
-    height:"50%",
-    right:"30px"
-    }
-    }
-  var stylelogin = {
-    right: "10%",
-    width: "50%",
-    position: "absolute",
-    '@media (max-width:1015px)': {
-      position:"absolute",
-      right:"20%",
-  
-    },
-    '@media (max-width:800px)': {
-      position:"absolute",
-      right:"10%",
-  
-    },
-    '@media (max-width:640px)': {
-      position:"absolute",
-      right:"7%",
-      width:"50%"
-  
-    }}
-    var loginstyle = {
-      '@media (max-width:640px)': {
-    
-         fontSize: "0.8rem",
-    
-      }
-    }
-   var styledropdown = {
-    position: "absolute",
-    right:"15%",
-    top:"8%",
-    '@media (max-width:1204px)': {
-      position:"absolute",
-      right:"10%",
-      top:"8%",
-  
-    },
-    '@media (max-width:920px)': {
-      position:"absolute",
-      right:"15%",
-      top:"8%",
-  
-    },
-    '@media (max-width:780px)': {
-      position:"absolute",
-      right:"10%",
-  
-    },
-    '@media (max-width:640px)': {
-      position:"absolute",
-      right:"0",
-      width:"20%"
-  
-    }
-  }
-///////////////////
-
-class Adpost extends Component {
+class Editads extends Component {
   state = {
     Title: "",
     Location: "",
@@ -127,22 +19,45 @@ class Adpost extends Component {
     Price: 0,
     Category: "",
     Contact: "",
+    Image: "",
     emptyfield: "",
     redirect: false,
     ////////////// image///////
     file: "",
     filename: "",
     filePath: "",
-    uploadedFile: {}
+    uploadedFile: {},
+    ad: [],
+    adid: 0
 
   };
 
   //////////////uploading image///////////
+  componentDidMount() {
+    const urle = window.location.href;
+    const mainpageurl = urle.split("editads")[0];
+    API.getOneAdById(parseInt(this.props.match.params.id))
+      .then(res => this.setState({
+        Title: res.data.title,
+        Location: res.data.location,
+        Description: res.data.description,
+        Price: res.data.price,
+        Category: res.data.category,
+        Contact: res.data.contactEmail,
+        Image: res.data.image,
+        adid: parseInt(this.props.match.params.id),
+        uploadedFile: { fileName: "yourfile", filePath: mainpageurl + res.data.image },
+        filePath:res.data.image
+      }))
+      .catch(err => console.log(err));
+
+
+  }
 
   onChange = e => {
     // event.target has files property which is an array of files, in our case we uplaod just one image so we want files[0]
     this.setState({ file: e.target.files[0] });
-console.log(e.target.files[0])
+
     // file[0] is an object and has propert of name which is the name of the file that has selected
     this.setState({ filename: e.target.files[0].name })
   }
@@ -160,15 +75,12 @@ console.log(e.target.files[0])
       /////////uploadfile with fileupload////// the res coming back from the server includes file name and file path
 
       /////// this.setState({ uploadedFile: { fileName: res.data.fileName, filePath: res.data.filePath } })
-
-      // this.setState({
-      //   filePath: URL.createObjectURL(this.state.file)
-      // })
-     //////////////////////////////////////////////////////
+      const urle = window.location.href;
+      const mainpageurl = urle.split("editads")[0];
       this.setState({
         filePath: res.data.filePath
       })
-      this.setState({ uploadedFile: { fileName: this.state.filename, filePath: this.state.filePath } })
+      this.setState({ uploadedFile: { fileName: this.state.filename, filePath: mainpageurl+this.state.filePath } })
 
     }
     catch (err) {
@@ -201,7 +113,9 @@ console.log(e.target.files[0])
   };
 
   handleFormSubmit = event => {
+
     event.preventDefault();
+
     if (this.props.authstate) {
       if (
         this.state.Title &&
@@ -210,7 +124,8 @@ console.log(e.target.files[0])
         this.state.Price &&
         this.state.Contact
       ) {
-        API.saveAd({
+
+        API.editAd(this.state.adid, {
           title: this.state.Title,
           location: this.state.Location,
           description: this.state.Description,
@@ -220,7 +135,7 @@ console.log(e.target.files[0])
           contactEmail: this.state.Contact
         })
           .then(res => {
-            this.setState({ emptyfield: "Posted Successfully!" });
+            this.setState({ emptyfield: "Edited Successfully!" });
             // reset form
             this.setState({ Title: "", Location: "", Description: "", image: "", Category: "", Price: "", Contact: "", file: "", filename: "" })
           })
@@ -251,33 +166,24 @@ console.log(e.target.files[0])
       <div id="firstlookAd">
         {/* redirect to main page after submitting */}
         {this.renderRedirect()}
-        <nav  style={navstyle}>
-            {/* <Link  to="/"><img id="logo" src="./assets/images/logo.png"/></Link> */}
+        <nav >
+          <Link to="/"><p id="logo">RETAILFY</p></Link>
+          {isAuthenticated ? (
+            <div class="dropdown">
+              <button class="dropbtn">{this.props.user.userName.charAt(0)}</button>
+              <div class="dropdown-content">
+                <Link to={`/myads/:${this.props.user.userId}`}><p>My Ads</p></Link>
+                <p onClick={this.handleLogOut} >Log Out</p>
 
-            <Link to="/"><p id="logo" style={logostyle}>RETAILFY</p></Link>
-
-             <div style={navleftstyle}>
-             {isAuthenticated ? (
-              <div className="dropdown" style={styledropdown} >
-                <button className="dropbtn">{this.props.user.userName.charAt(0)}</button>
-                <div className="dropdown-content">
-                  <Link to={`/myads/:${this.props.user.userId}`}><p>My Ads</p></Link>
-                  <p onClick={this.handleLogOut} >Log Out</p>
-
-                </div>
               </div>
+            </div>
 
-            ) : (
-              <div style={stylelogin}> <Link id="login" to="/register" ><p style={loginstyle}>Log In/ Sign Up</p></Link></div>
+          ) : (
+              <Link id="login" to="/register">Log In/ Sign Up</Link>
+            )}
 
-              )}
-
-           
-
-             </div>
-
-          </nav>
-        <div className="container" style={containerstyle}>
+        </nav>
+        <Container>
 
           <form>
             <Row>
@@ -319,7 +225,7 @@ console.log(e.target.files[0])
                 </datalist>
 
                 {/* upload the image */}
-                <Fileupload onSubmit={this.onSubmit} onChange={this.onChange} uploadedFile={this.state.uploadedFile}  />
+                <Fileupload imagesrc={this.state.image} onSubmit={this.onSubmit} onChange={this.onChange} uploadedFile={this.state.uploadedFile} filename={this.state.filename} />
 
 
                 <Input
@@ -381,7 +287,7 @@ console.log(e.target.files[0])
               </Col>
             </Row>
           </form>
-        </div>
+        </Container>
       </div>
     );
   }
@@ -395,4 +301,4 @@ const mapStateToProps = state => ({
 
 })                                  // so we map authstate to auth property- we access to this state from the store through this.props.auth
 
-export default connect(mapStateToProps, { userAuth })(Radium(Adpost));
+export default connect(mapStateToProps, { userAuth })(Editads);

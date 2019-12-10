@@ -9,13 +9,14 @@ const fileUpload = require("express-fileupload");
 const path = require('path');
 
 ////////multer////////
-const multer=require('multer');
+const multer = require('multer');
 
 const app = express();
 const PORT = process.env.PORT || 3044;
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 
 if (process.env.NODE_ENV === "production") {
@@ -32,28 +33,29 @@ app.use(
 
 ////////////multer/////////
 app.use('/uploads', express.static('uploads'));
-var storage=multer.diskStorage({
-  destination: function(req,res,cb){
+
+var storage = multer.diskStorage({
+  destination: function (req, res, cb) {
     cb(null, './uploads/');
   },
-  filename:function(req,file,cb){
-    cb(null,Date.now()+file.originalname);
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname);
   }
 });
 
-const fileFilter=(req, file, cb) =>{
-  if(file.mimetype === 'image/jpeg' || file.mimetype==='image/png'){
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
     cb(null, true);
   } else {
-    cb(null,false);
+    cb(null, false);
   }
 }
-const upload=multer({
-  storage:storage,
-  limits:{
-    fileSize:1024*1024*5
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
   },
-  fileFilter:fileFilter
+  fileFilter: fileFilter
 })
 
 /////////////////fileupload using express-fileupload/////////////
@@ -64,7 +66,7 @@ const upload=multer({
 //   useTempFiles: true,
 //   tempFileDir: `${_dirname}/client/public/assets/uploads/tmp/`
 // }));
-
+/////////////////////////////////////////////////////////////////
 // Routes
 app.use(routes);
 
